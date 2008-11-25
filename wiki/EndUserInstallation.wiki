@@ -1,4 +1,5 @@
 #summary How the end-user solution will be installable.
+#labels End-Users,Documentation,Early
 = Installing !AudioSpread on Ubuntu Linux =
 
 *_IMPORTANT:_ For now, this page will be useless to you because we have not released any runnable files yet...)*
