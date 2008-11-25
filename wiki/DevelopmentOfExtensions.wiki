@@ -1,0 +1,6 @@
+#summary Quick tips on writing extensions for Asterisk and Drupal.
+#labels Development,Extensions,Tutorials
+
+= Extending Asterisk and Drupal =
+
+Sometimes here, some info on extending Asterisk and Drupal functionalities by creating modules and such.
