@@ -1,4 +1,4 @@
-*[WikiHome|Wiki home]*
+*Wiki Home*
 *Project management*
   # [AudioSpread Roadmap]
   # [Overall development architecture]
