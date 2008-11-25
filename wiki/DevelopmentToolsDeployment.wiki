@@ -1,0 +1,26 @@
+#summary The hardware and software deployment we use for development.
+#labels Development,Deployment,Technologies
+
+= Deployment of tools for development =
+
+== Our hardware and software setup ==
+For information, Interspread uses the following software tools to develop the AudioSpread solution:
+  * On our custom server machine:
+    * An [http://subversion.tigris.org SVN (or Subversion) server]
+    * An [http://fr.wikipedia.org/wiki/LAMP LAMP stack]: a [http://www.debian.org Debian-based] [http://www.ubuntu.org Ubuntu Linux] distribution running Apache, MySQL and PHP,
+    * [http://www.drupal.org Drupal CMS,]
+    * [http://www.asterisk.org Asterisk.]
+
+  * On each developer and customer machine:
+    * An [http://en.wikipedia.org/wiki/Comparison_of_Subversion_clients SVN client] (_for developers only_),
+    * A SIP or H.323 [http://en.wikipedia.org/wiki/Comparison_of_VoIP_software#General_softphone_clients Voice-over-IP Softphone client,]
+    * A Web Browser,
+    * An [http://en.wikipedia.org/wiki/Comparison_of_SSH_clients SSH client].
+
+The SSH tunneling constraint comes from our server location and is not a requirement to get the same functionality as ours. Apart from that, having SSH access to the server may help for remote maintenance after initial setup.
+The final end-user solution should see the communications ported from VoIP to regular phone technology. This however is out of the project scope for now.
+
+
+Below is a diagram of our deployment: we have posted a [http://audiospread.googlecode.com/files/Tools_Deployment_For_Development.dia Dia source file] of it in the [http://code.google.com/p/audiospread/downloads/list Downloads section].
+
+http://audiospread.googlecode.com/files/DevelopmentWorkDeployment.png
