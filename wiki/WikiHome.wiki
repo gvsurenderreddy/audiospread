@@ -1,4 +1,4 @@
-#summary this is a summary
+#summary About our project / Home to all the wiki pages.
 = AudioSpread Wiki Home =
 
 
