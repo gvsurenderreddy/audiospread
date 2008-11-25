@@ -1,0 +1,22 @@
+#summary One-sentence summary of this page.
+#labels Development,Featured
+= Development Roadmap =
+
+== 0.05 Base server stacks deployed & working ==
+Write manuals for the following steps ?
+On our main server at rue de Grenelle (JBTV):
+  * ~~LAMP stack installed (Ubuntu)~~ *DONE*
+  * we have our own Ethernet plug hole
+  * user accounts = same accounts used for committing 
+  * Drupal installed 
+  * Asterisk installed 
+  * SSH possible from within local area network 
+  * SSH possible from outside 
+  * SVN is working from-to sourceforge repository from within ECE 
+  * Asterisk can be called from local area network and from outside with as softphone 
+
+----
+
+== 0.1 Install is ready for development ==
+  * Drupal & Asterisk's seperate folders for modules created 
+  * The latter folders are versionned properly 
