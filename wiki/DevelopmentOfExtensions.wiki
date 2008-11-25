@@ -3,4 +3,4 @@
 
 = Extending Asterisk and Drupal =
 
-Sometimes here, some info on extending Asterisk and Drupal functionalities by creating modules and such.
+Some info on extending Asterisk and Drupal functionalities by creating modules and such.
