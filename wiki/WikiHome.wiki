@@ -1,4 +1,5 @@
 #summary About our project / Home to all the wiki pages.
+#labels Featured,About
 = AudioSpread Wiki Home =
 
 
