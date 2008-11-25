@@ -1,11 +1,11 @@
 #summary About our project / Home to all the wiki pages.
 #labels Featured,About
-= AudioSpread Wiki Home =
+= !AudioSpread Wiki Home =
 
-==About Interspread and Audiospread==
+== About Interspread and !Audiospread ==
 Interspread is a 7-students team made up of 4th year Chinese and French students studying at the Ecole Centrale d'Electronique (ECE) for year 2008/2009. Interspread's staff is composed of students specialized in Information Systems (4), Telecommunication (2) and Embedded Systems (1).
 
-AudioSpread is the name of the PPE (pluridisciplinary team project) developped by Interspread from October 2008 to April 2009 with the mentoring of the Internews Europe NGO and the ECE school, both in Paris, France.
+!AudioSpread is the name of the PPE (pluridisciplinary team project) developped by Interspread from October 2008 to April 2009 with the mentoring of the Internews Europe NGO and the ECE school, both in Paris, France.
 
 ----
 For editing pages : [http://code.google.com/p/audiospread/w/list use the default wiki pages view].
