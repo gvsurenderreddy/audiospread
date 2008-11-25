@@ -5,7 +5,7 @@
 
 *Developer Documentation*
   # [DevelopmentOfExtensions Extending Drupal & Asterisk]
-  # [DevelopmentToolsDeployment Tools deployment used during development]
+  # [DevelopmentToolsDeployment Deployment of tools for development]
 
 *End-user Documentation*
   # [EndUserInstallation Installing AudioSpread on Ubuntu]
