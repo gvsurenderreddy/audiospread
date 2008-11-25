@@ -1,9 +1,9 @@
 *[WikiHome AudioSpread Wiki Home]*
 
 *!AudioSpread Project Management*
-  # [DevelopmentRoadmap Development Roadmap]
+  1. [DevelopmentRoadmap Development Roadmap]
 *Developer Documentation*
-  # [DevelopmentOfExtensions Extending Drupal & Asterisk]
-  # [DevelopmentToolsDeployment Deployment of tools for development]
+  1. [DevelopmentOfExtensions Extending Drupal & Asterisk]
+  2. [DevelopmentToolsDeployment Deployment of tools for development]
 *End-user Documentation*
-  # [EndUserInstallation Installing AudioSpread on Ubuntu]
+  1. [EndUserInstallation Installing AudioSpread on Ubuntu]
