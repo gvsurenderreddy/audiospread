@@ -26,5 +26,5 @@ Drupal can be downloaded from [http://drupal.org/project/Drupal+project here.]
 ===- Asterisk, FreePBX, Trixbox===
 Use the distributions packages or [http://colt45.chemlab.org/?p=55 see this blog link.]
 
-===- The !AudioSpread runnable code===
+===- The !AudioSpread files===
 We haven't released anything for now.
