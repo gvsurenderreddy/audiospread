@@ -1,7 +1,10 @@
 *Wiki Home*
-*Project management*
+*Interspread Project Management*
   # [AudioSpread Roadmap]
   # [Overall development architecture]
-*Project Documentation*
+
+*End-user Documentation*
   # [Installing AudioSpread on Ubuntu]
+
+*Developers Documentation*
   # [Module development for Drupal & Asterisk]
