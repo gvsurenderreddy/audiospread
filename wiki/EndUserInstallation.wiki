@@ -1,0 +1,15 @@
+#summary How the end-user solution will be installable.
+= Installing !AudioSpread on Ubuntu =
+
+To install the *!AudioSpread server set*, a number of packages provided along with the Ubuntu distribution are necessary.
+
+Those are :
+===- some LAMP stack:===
+||sudo apt-get install apache2 apache2-doc mysql-server php5 libapache2-mod-php5 php5-mysql phpmyadmin||
+
+(or go to <a href="apt://apache2,apache2-doc,mysql-server,php5,libapache2-mod-php5,php5-mysql,phpmyadmin">this apt:// link</a> )
+===- Drupal (on top of Apache):===
+http://drupal.org/project/Drupal+project see version 6.x
+
+===- Asterisk, FreePBX, Trixbox===
+use the distributions packages or [http://colt45.chemlab.org/?p=55 see this blog link.]
