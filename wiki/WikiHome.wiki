@@ -1,6 +1,4 @@
-#sidenav navigation
-
-#summary The home to all of AudioSpread's Wiki pages
+#The home to all of AudioSpread's Wiki pages
 
 
 
