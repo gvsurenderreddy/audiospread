@@ -1,5 +1,5 @@
 #The home to all of AudioSpread's Wiki pages
-#sidenav
+#sidenav navigation
 = AudioSpread Wiki Home =
 
 
