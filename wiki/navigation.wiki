@@ -2,10 +2,10 @@
 
 *!AudioSpread Project Management*
   # [DevelopmentRoadmap Development Roadmap]
-  # [Overall development architecture]
 
 *Developer Documentation*
-  # [Module development for Drupal & Asterisk]
+  # [DevelopmentOfExtensions Extending Drupal & Asterisk]
+  # [DevelopmentToolsDeployment Tools deployment used during development]
 
 *End-user Documentation*
-  # [Installing AudioSpread on Ubuntu]
+  # [EndUserInstallation Installing AudioSpread on Ubuntu]
