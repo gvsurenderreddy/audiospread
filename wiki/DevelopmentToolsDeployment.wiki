@@ -1,5 +1,5 @@
 #summary The hardware and software deployment we use for development.
-#labels Development,Deployment,Technologies
+#labels Development,Deployment,Technologies,Featured
 
 = Deployment of tools for development =
 
