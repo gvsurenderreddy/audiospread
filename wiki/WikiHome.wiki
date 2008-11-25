@@ -1,6 +1,6 @@
 #summary About our project / Home to all the wiki pages.
 #labels Featured,About
-= Audio Spread Wiki Home =
+= Audiospread Wiki Home =
 
 ==About Interspread and Audio Spread==
 Interspread is a 7-students team made up of 4th year Chinese and French students studying at the Ecole Centrale d'Electronique (ECE) for year 2008/2009. Interspread's staff is composed of students specialized in Information Systems (4), Telecommunication (2) and Embedded Systems (1).
