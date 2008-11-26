@@ -8,7 +8,7 @@ Interspread is a 7-students team made up of 4th year Chinese and French students
   * Telecommunication & Networks (2 students),
   * Embedded Systems (1 student).
 
-!AudioSpread is the name of the PPE (multidisciplinary team project) developed by Interspread from October 2008 to April 2009 with the mentoring of the [www.internews.eu Internews Europe NGO] and the ECE school, both in Paris, France.
+!AudioSpread is the name of the PPE (multidisciplinary team project) developed by Interspread from October 2008 to April 2009 with the mentoring of the [http://www.internews.eu Internews Europe NGO] and the ECE school, both in Paris, France.
 
 ----
 For editing pages : [http://code.google.com/p/audiospread/w/list use Google's default wiki pages listing].
