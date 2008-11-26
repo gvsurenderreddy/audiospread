@@ -1,4 +1,4 @@
-#summary The !AudioSpread project Roadmap: comprising several milestones with each containing tickets.
+#summary The AudioSpread project Roadmap: comprising several milestones with each containing tickets.
 #labels Development,Featured
 = Development Roadmap =
 
