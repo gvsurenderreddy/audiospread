@@ -9,3 +9,5 @@
 
 *End-user Documentation*
   * [EndUserInstallation Installing AudioSpread on Ubuntu]
+
+http://audiospread.googlecode.com/files/InterspreadLogo.PNG
