@@ -1,0 +1,35 @@
+#summary Thoughts & explanation of our methodology for the project
+
+= Introduction =
+
+Our project methodology is being determined.
+Just notes & links for now.
+We are interesting in integrating RUP with some Agile development method.
+
+One very page talks about that kind of integration:
+http://www.agilemodeling.com/essays/agileModelingRUP.htm
+
+See also (sent by email to the group):
+
+  * http://blog.assembla.com/assemblablog/tabid/12618/bid/2177/Agile-development-for-very-effective-dummies.aspx
+  * http://en.wikipedia.org/wiki/Agile_software_development
+  * http://www.agilemodeling.com/ =>
+----
+This subsection is a citation from: http://www.agilemodeling.com/essays/introductionToAM.htm
+
+"Agile Modeling (AM) is a practice-based methodology for effective modeling and documentation of software-based systems.   Simply put, Agile Modeling (AM) is a collection of values, principles, and practices for modeling software that can be applied on a software development project in an effective and light-weight manner.  As you see in Figure 1 AM is meant to be tailored into other, full-fledged methodologies such as XP or RUP, enabling you to develop a software process which truly meets your needs. "
+
+http://www.agilemodeling.com/images/amScope.gif
+
+Figure 1
+----
+
+= TODO =
+Decide on a precise methodology-mix and put that into the PTC.
+Put things down with clear units (ie, nb of days of a cycle & cyle time structure & usual tasks). Make things clear as to where tickets are etc...
+= About our Development Roadmap =
+Our roadmap with milestones and tickets has been [http://code.google.com/p/audiospread/wiki/DevelopmentRoadmap on the Development Rodmap page] also reachable from the navigation panel. This is rather just a _development_ roadmap with only technical things to be done. Our full project has business & design things before, during and after development.
+
+= Details =
+
+No details for now.
