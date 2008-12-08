@@ -27,3 +27,6 @@ http://blog.creaone.fr/public/svn.png
 Below is a diagram of our deployment: we have posted a [http://audiospread.googlecode.com/files/Tools_Deployment_For_Development.dia Dia source file] of it in the [http://code.google.com/p/audiospread/downloads/list Downloads section].
 
 http://audiospread.googlecode.com/files/DevelopmentWorkDeployment.png
+
+= Random links & notes =
+http://subversible.com/ <= svn sync of Drupal's >= 5.x core and most used modules. Would spare from having to checkout modules from cvs.
