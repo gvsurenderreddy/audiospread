@@ -20,7 +20,7 @@ For information, Interspread uses the following software tools to develop the Au
 The SSH tunneling constraint comes from our server location and is not a requirement to get the same functionality as ours. Apart from that, having SSH access to the server may help for remote maintenance after initial setup.
 The final end-user solution should see the communications ported from VoIP to regular phone technology. This however is out of the project scope for now.
 
-This diagram shows quickly how we plan to make a web app out of an SVN repository. Please refer to the info on the picture itself for credits (it was not done by us).
+This diagram below shows quickly how we plan to make a web app out of an SVN repository. Please refer to the info on the picture itself for credits (it was not done by us).
 http://blog.creaone.fr/public/svn.png
 
 
