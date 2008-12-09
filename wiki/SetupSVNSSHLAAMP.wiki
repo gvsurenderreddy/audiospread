@@ -1,0 +1,74 @@
+#summary Some documentation on how to setup a development server like ours from "scratch"
+
+= Setting up an SVN+SSH and Linux/Asterisk/Apache/Mysql/Php server =
+
+== Introduction ==
+
+We hope through this documentation to give you more input on setting up [DevelopmentToolsDeployment our development server].
+We have wanted this article to be simple and fast.
+
+A summary of the technologies involved are: *Ubuntu/Debian Linux, svn+ssh, Apache2+MySQL+PHP, Asterisk.*
+
+  In our situation, we wanted to have both Apache2 and Asterisk's config files & contents folders to be versioned over svn.
+Thus everytime a change is committed onto the server, we can 1) restart the server if necessary, 2) interact with it over HTTP or VoIP (ie. browse the server's web pages / make a phone call to it).
+
+
+The ssh part in the svn+ssh was necessary because we had to cross our university proxy to reach our server locate in some room there and adding an ssh+ part to svn would make our connection flow through flawlessly instead of regular svn:// (on port 3690).
+Svn+ssh is special because it virtually logs you into a shell onto on the remote svn server and fetches/interacts with files from there.
+This implies that the users created for svn+ssh should be real users of the system (with linux/unix accounts created on the server).
+
+
+== Setting up a SVN+SSH Server ==
+For our server we used an Ubuntu 8.04 regular CD which only installed the ssh client and not the server. You may not have to do this on Ubuntu Server for example.
+
+Test if the Openssh server is installed:
+
+`which sshd`
+
+should output:
+
+`/usr/sbin/sshd`
+
+
+You just need to install the Openssh server. Unless you use some graphical front-end to the apt system such as Synaptic Package Manager or Adept on KDE, you could type:
+
+`sudo apt-get install openssh-server`
+
+Once installed, see if it's running yet:
+
+`pstree | grep sshd`
+
+if you see ssh there, the ssh daemon (server) is running. Else start it:
+
+`sudo /etc/init.d/sshd start`
+
+Have try logging into your computer through ssh to test that, type your usual machine login password if prompted:
+
+`ssh localhost`
+
+note: another way to do that is to do ssh yourUserName@localhost ... Here it will use your current username (type `who` to know it).
+
+You have a new shell running which looks like your previous one. To get out of that shell, press _Ctrl+D_ once.
+
+== Setting up a SVN+SSH server ==
+
+=== Adding new Linux users ===
+Before touching the actual SVN part, we'll create a few users who will be able to:
+  * administer the Linux server remotely with the same rights as root/admin
+  * fiddle what they want in their /home/theirUserName directory
+  * contribute to the project (SVN read/writing) to the repository
+  * view the project's code (SVN reading)
+
+There is no need to create Linux user accounts for making VoIP phone calls to the server (connection to the Asterisk server on port 5690) and viewing its web pages (connection to the Apache server on port 80 (HTTP)).
+
+To create a Linux user with minimum rights on your server, do 1). To create an adminstrator do 2):
+
+1) `sudo adduser newloginforthisuser`
+
+2) `sudo adduser newloginfortheadminuser admin`
+
+Which will take you into a simple wizard in shell. A folder with that user's login name will be created inside the /home folder (ie /home/newloginforthisuser/) copying the contents from the template folder /etc/skel.
+
+By default, the users created with minimum rights (from 1)) shall not be able to read/touch other users' and root's files.
+
+=== Creating repositories spaces locally ===
