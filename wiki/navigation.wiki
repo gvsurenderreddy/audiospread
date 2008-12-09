@@ -7,6 +7,7 @@
 *Developer Documentation*
   * [DevelopmentOfExtensions Extending Drupal & Asterisk]
   * [DevelopmentToolsDeployment Deployment of tools for development]
+  * [SetupSVNSSHLAAMP Setting up an svn+ssh/asterisk/apache server]
 
 *End-user Documentation*
   * [EndUserInstallation Installing AudioSpread on Ubuntu]
