@@ -9,7 +9,7 @@ We have wanted this article to be simple and fast.
 
 A summary of the technologies involved are: *Ubuntu/Debian Linux, svn+ssh, Apache2+MySQL+PHP, Asterisk.*
 
-  In our situation, we wanted to have both Apache2 and Asterisk's config files & contents folders to be versioned over svn.
+In our situation, we wanted to have both Apache2 and Asterisk's config files & contents folders to be versioned over svn.
 Thus everytime a change is committed onto the server, we can 1) restart the server if necessary, 2) interact with it over HTTP or VoIP (ie. browse the server's web pages / make a phone call to it).
 
 
