@@ -63,12 +63,38 @@ There is no need to create Linux user accounts for making VoIP phone calls to th
 
 To create a Linux user with minimum rights on your server, do 1). To create an adminstrator do 2):
 
-1) `sudo adduser newloginforthisuser`
-
-2) `sudo adduser newloginfortheadminuser admin`
+  # `sudo adduser newloginforthisuser`
+  # `sudo adduser newloginfortheadminuser admin`
 
 Which will take you into a simple wizard in shell. A folder with that user's login name will be created inside the /home folder (ie /home/newloginforthisuser/) copying the contents from the template folder /etc/skel.
 
 By default, the users created with minimum rights (from 1)) shall not be able to read/touch other users' and root's files.
 
 === Creating repositories spaces locally ===
+To have a repository path from outside looking like `svn+ssh://serverAdress/svn/projectname` and so without setting up URL rewriting, the easiest is to do the following as a root user:
+
+  # create a folder named _svn_ in your root folder: `mkdir /svn`. This will be the folder to contain one more project repositories.
+  # create a folder named your project name within the latter folder: `mkdir /svn/myprojectname`.
+  # make svn create a repository in that folder: `svnadmin create /svn/myprojectname`
+You can list the new repository folder to ensure `svnadmin` has done its job:
+{{{
+$ ls /svn/myprojectname
+conf  dav  db  format  hooks  locks  README.txt
+}}}
+
+=== Setting up repository access for SVN+SSH ===
+Now we should edit our create repository's folder to setup user rights.
+What is cool with the SVN+SSH way of accessing a repository is that from the moment users have a (linux) user account on the machine, they just need to have that same username written in a repository's config file to be able to access that repository.
+Edit your newly created repository's config file:
+{{{
+$ cd /svn/myprojectname/conf/
+}}}
+In the files there, we have `passwd` which lets you set custom password for some users svn, and `authz` allowing you to set permissions for users created (whether it be for accounts defined within `passwd` or for existing linux user accounts from the machine).
+In our case, it is simpler to say that we want to reuse the linux user accounts from the machine, so we edit `authz` right away.
+{{{
+$ ls
+authz  passwd  svnserve.conf
+$ vi authz #you can use nano, emacs, mcedit or a graphical text editor for example
+$ 
+
+}}}
