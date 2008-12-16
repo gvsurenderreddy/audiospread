@@ -18,14 +18,16 @@ Svn+ssh is special because it virtually logs you into a shell onto on the remote
 This implies that the users created for svn+ssh should be real users of the system (with linux/unix accounts created on the server).
 
 
-== Setting up a SVN+SSH Server ==
-For our server we used an Ubuntu 8.04 regular CD which only installed the ssh client and not the server. You may not have to do this on Ubuntu Server for example.
+== Install SVN and the OpenSSH server if not present ==
+
+=== OpenSSH server ===
+For our server we used an Ubuntu 8.04 regular CD which only installed the SSH client and not the server. You may not have to do this on Ubuntu Server for example.
 
 Test if the Openssh server is installed:
 
 `which sshd`
 
-should output:
+should output something like:
 
 `/usr/sbin/sshd`
 
@@ -46,11 +48,25 @@ Have try logging into your computer through ssh to test that, type your usual ma
 
 `ssh localhost`
 
-note: another way to do that is to do ssh yourUserName@localhost ... Here it will use your current username (type `who` to know it).
+*_note:_* another way to do that is to do ssh yourUserName@localhost ... Here it will use your current username (type `who` to know it).
 
-You have a new shell running which looks like your previous one. To get out of that shell, press _Ctrl+D_ once.
+You have a new shell running which looks like your previous one though it is piped through an SSH connection. To get out of that shell, press _Ctrl+D_ once.
 
-== Setting up a SVN+SSH server ==
+=== SVN ===
+
+As before, check if svn is installed:
+`which svn`
+
+should output something like:
+
+`/usr/bin/svn`
+
+If not, install svn:
+`sudo apt-get install svn`, replacing svn by subversion if you have no result.
+
+And now we have all the needed software for an SVN+SSH server.
+
+== Add users, create repositories, set up SVN users access ==
 
 === Adding new Linux users ===
 Before touching the actual SVN part, we'll create a few users who will be able to:
@@ -74,7 +90,6 @@ By default, the users created with minimum rights (from 1)) shall not be able to
 To have a repository path from outside looking like `svn+ssh://serverAdress/svn/projectname` and so without setting up URL rewriting, the easiest is to do the following as a root user:
 
   # create a folder named _svn_ in your root folder: `mkdir /svn`. This will be the folder to contain one more project repositories.
-  # create a folder named your project name within the latter folder: `mkdir /svn/myprojectname`.
   # make svn create a repository in that folder: `svnadmin create /svn/myprojectname`
 You can list the new repository folder to ensure `svnadmin` has done its job:
 {{{
@@ -95,6 +110,19 @@ In our case, it is simpler to say that we want to reuse the linux user accounts 
 $ ls
 authz  passwd  svnserve.conf
 $ vi authz #you can use nano, emacs, mcedit or a graphical text editor for example
-$ 
-
 }}}
+Starting from that file:
+{{{
+#----lots of comments before here---
+[groups]
+# harry_and_sally = harry,sally
+
+# [/foo/bar]
+# harry = rw
+# * =
+
+# [repository:/baz/fuz]
+# @harry_and_sally = rw
+# * = r
+}}}
+Edit the [groups] section and create yourself a new group:
