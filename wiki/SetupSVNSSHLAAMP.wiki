@@ -75,16 +75,20 @@ Before touching the actual SVN part, we'll create a few users who will be able t
   * contribute to the project (SVN read/writing) to the repository
   * view the project's code (SVN reading)
 
-There is no need to create Linux user accounts for making VoIP phone calls to the server (connection to the Asterisk server on port 5690) and viewing its web pages (connection to the Apache server on port 80 (HTTP)).
+For this we'll namely use adduser which takes you into a simple wizard. After that wizard, a folder with the entered new username will be created inside the /home folder (ie /home/newloginforthisuser/) copying the contents from the template folder /etc/skel.
 
-To create a Linux user with minimum rights on your server, do 1). To create an adminstrator do 2):
+There is no need to create Linux user accounts for making VoIP phone calls to the server (connection to the Asterisk server on port 5690) and viewing its web pages (connection to the Apache server on port 80 (HTTP)). The logins we create there are for people that will contribute code directly to SVN.
 
-  # `sudo adduser newloginforthisuser`
+1. Create a linux user group named "svn" (or whatever you want) that'll be helpful for repository access setting & synchronisation later.
+  # `sudo addgroup svn`
+2. Create one or more (type the command several times) unix users with no specific rights on your server:
+  # `sudo adduser newloginforthisuser svn #add a user and put it into the svn group directly`
+3. this command makes you create an extra administrator if you need to.. Note that if the login name you type as a first parameter is an existing user's name, then that user will be added to the admin group making that person able to edit all your system's files as a root person.
   # `sudo adduser newloginfortheadminuser admin`
 
-Which will take you into a simple wizard in shell. A folder with that user's login name will be created inside the /home folder (ie /home/newloginforthisuser/) copying the contents from the template folder /etc/skel.
+By default, the users created with minimum rights (from 1)) shall not be able to read/touch other users' files.
 
-By default, the users created with minimum rights (from 1)) shall not be able to read/touch other users' and root's files.
+In then end you can see who's in the admin and svn groups by typing: `cat /etc/group | grep -wE "svn|admin"`
 
 === Creating repositories spaces locally ===
 To have a repository path from outside looking like `svn+ssh://serverAdress/svn/projectname` and so without setting up URL rewriting, the easiest is to do the following as a root user:
@@ -104,7 +108,7 @@ Edit your newly created repository's config file:
 {{{
 $ cd /svn/myprojectname/conf/
 }}}
-In the files there, we have `passwd` which lets you set custom password for some users svn, and `authz` allowing you to set permissions for users created (whether it be for accounts defined within `passwd` or for existing linux user accounts from the machine).
+In the files there, we have `passwd` which lets you set custom password for svn users who probably are not unix users on your machine, and `authz` allowing you to set permissions for users created (whether it be for accounts defined within `passwd` or for existing linux user accounts from the machine).
 In our case, it is simpler to say that we want to reuse the linux user accounts from the machine, so we edit `authz` right away.
 {{{
 $ ls
@@ -125,4 +129,9 @@ Starting from that file:
 # @harry_and_sally = rw
 # * = r
 }}}
-Edit the [groups] section and create yourself a new group:
+Remember from the last part that we have created a group named "svn" ?
+Now let's give permissions for that group. In the authz file, add the following section (everything else can be deleted or be left commented) which gives the unix group svn read and write access to the repository myprojectname we just created:
+{{{
+[/svn/myprojectname/]
+svn = rw
+}}}
