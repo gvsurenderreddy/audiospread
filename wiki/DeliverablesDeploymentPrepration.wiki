@@ -1,0 +1,17 @@
+#summary Notes on what we should undertake to have our final deliverables namely for the end-users
+
+= Introduction =
+
+The project is to release the following software-related deliverables likely at the beginning of April 2009:
+  * installation instructions for radio stations IT staff
+  * user documentation (content management, business management...)
+  * Debian packages (or at least both Debian and Ubuntu compatible packages)
+  * A Live & Installable Custom Distribution CD 
+
+
+= Details =
+
+== A Live & Installable Custom Distribution CD ==
+=== From an Ubuntu installation/distribution ===
+  * To create a new CD with custom packages and settings (ie. change background image settings, logos, skins...): [http://reconstructor.aperantis.com/index.php?option=com_frontpage&Itemid=1 Reconstructor, a python GUI helping to Build and customize graphically an Ubuntu-based library from any Ubuntu CD].
+  * To create a new CD from an existing Ubuntu installation: [https://help.ubuntu.com/community/LiveCDCustomizationFromScratch from a help.ubuntu.com article with everything happening with shell commands to enter]. It's probably possible to change the default graphics with this method though it is not shown on the latter link.
