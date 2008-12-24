@@ -1,0 +1,22 @@
+#summary How to setup tunneling on Linux & Windows for development & testing.
+
+= Principles of tunneling for our needs =
+
+
+= Ports to be tunneled =
+
+  * SVN+SSH : 
+  * SIP (voice over IP session initiation protocol) :
+  * HTTP : 
+  * MySQL :
+
+
+= Tunneling on Linux =
+
+*Requires:*
+
+  * preventing man in the middle attack blockings (clear auth hosts file)
+
+= Tunneling on Windows =
+
+*Requires:*
