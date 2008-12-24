@@ -4,3 +4,13 @@
 = Extending Asterisk and Drupal =
 
 Some info on extending Asterisk and Drupal functionalities by creating modules and such.
+
+= Extending Asterisk =
+
+== Adding new sounds to Asterisk ==
+You should follow the tutorial at [http://www.voip-info.org/tiki-index.php?page=Convert+WAV+audio+files+for+use+in+Asterisk this page] to do the following things:
+  # Convert your sound files to .gsm or .sln file format using sox or whatever software application you want.(1)
+  # Move your files to /usr/share/asterisk/sounds/ (and inside another folder of your choice if you want).
+  # In extensions.conf (from /etc/asterisk/) you Playback() and !BackGround() calls should refer to your file name's path relative to /usr/share/asterisk/sounds/ and without any extension (no .gsm or .wav if ever you manage to make .wav played).
+
+(1) note: If you use sox, the `sox source.wav dest.gsm` command without more options may not be sufficient to give the right results because the sampling rate is obviously unchanged between source and destination. If that sampling rate is too high, Asterisk will play the gsm at less than the speed you want.
