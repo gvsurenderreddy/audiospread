@@ -4,6 +4,8 @@
 *Contents*
 <wiki:toc max_depth="5" />
 
+= Note: This page is WIP + discovery don't take it as sure information =
+
 == Introduction ==
 
 We hope through this documentation to give you more input on setting up [DevelopmentToolsDeployment our development server].
@@ -147,6 +149,7 @@ Note that we had a linux group named `svn` and that reusing that name in the `au
 All in all, for an svn+ssh setup, we can say that SVN seems to be aware of the linux usernames, but not of linux user group names.
 
 === Putting the right permissions to your repository ===
+TODO : We are not sure of this !
 All your developers are in a same `svn` linux group.
 
 In order for them to be able to read/write into the repository (checking out and updating should be ok, but commiting will give permissions errors without that), you need to grant access to both root and your svn-specific user group recursively (on all the file & folders hierarchy of your repository):
