@@ -24,7 +24,7 @@ This implies that the users created for svn+ssh should be real users of the syst
 
 == Install SVN and the OpenSSH server if not present ==
 
-What we are doing here is actually what [http://svn.haxx.se/dev/archive-2004-03 /0253.shtml Gunther Strube's post] proposes for usual SVN+SSH setups except that you will have a bit more details here, the setup used here assumes that you don't want to put your respositories elsewhere than in an not-to-long absolute path like /svn/ to as to skip the redirection option `-r` to pass to svnserve.
+What we are doing here is actually what [http://svn.haxx.se/dev/archive-2004-03/0253.shtml Gunther Strube's post] proposes for usual SVN+SSH setups except that you will have a bit more details here, the setup used here assumes that you don't want to put your respositories elsewhere than in an not-to-long absolute path like /svn/ to as to skip the redirection option `-r` to pass to svnserve.
 
 === Installing the OpenSSH server ===
 For our server we used an Ubuntu 8.04 regular CD which only installed the SSH client and not the server. You may not have to do this on Ubuntu Server for example.
@@ -76,27 +76,39 @@ And now we have all the needed software for an SVN+SSH server.
 
 *a)* create/decide on developer user accounts list to have read/write access to our repository, which we name `[developers]`
 
-*b)* create a 'subversion' group and add the developer users to it.
+*b)* create a `subversion` group and add the developer users to it.
 
-*d)* create the directory '/svn' that will contain your repositories. Give it permissions at least for 'subversion' group read,write,execute and set group user id for folder (g+s):
+*d)* create the directory `/svn` that will contain your repositories. Give it permissions at least for `subversion` group read,write,execute and set group user id for folder (g+s):
 
 *or*
 
-if the directory to host our repositories already exists, make sure it that all the folders in the path have +x permissions for our 'subversion' group or +x permissions for others
-chown :subversion '/svn'; chmod g+rws '/svn'
+if the directory to host our repositories already exists, make sure it that all the folders in the path have +x permissions for our `subversion` group or +x permissions for others:
+{{{
+chown :subversion /svn; chmod g+rws /svn
+}}}
 
-*e)* create repository 'repo' within '/svn' with svnadmin create. Note that all the folders have their group in r-s (s is the interesting part), making so that every file/folder created within them belongs to group 'subversion'.
+*e)* create repository `repo` within `/svn` with svnadmin create. Note that all the folders have their group in r-s (s is the interesting part), making so that every file/folder created within them belongs to group 'subversion'.
+
 Make everything group-editable:
-find '/svn/repo' -type d -exec chmod g+rwx {} \;#allows adding files into folder
-find '/svn/repo' -type f -exec chmod g+rw {} \;#allows all files to be modified by group
+{{{
+find /svn/repo -type d -exec chmod g+rwx {} \;#allows adding files into folder
+find /svn/repo -type f -exec chmod g+rw {} \;#allows all files to be modified by group
+}}}
 
-*f)* setup 'repo' to accept developers read/writes from the developers users from list [developers]:
-in file '/svn/repo'/conf/authz:
-- in section `[groups]` add line someNewGroupName = the,developers,from,the,`[developers]`,list where someNewGroupName is a group name not necessarily the same as 'subversion'
-- add further down a section [/] under which you put the lines:
-    - `*` = r
-    - @someNewGroupName = rw
-- (this statement in uncertain =>) so as to prevent you from writing to google code's imported wiki folder do, add a section:
+*f)* setup `repo` to accept developers read/writes from the developers users from list [developers]:
+
+in file `/svn/repo`/conf/authz:
+  - in section `[groups]` add line:
+{{{
+someNewGroupName = the,developers,from,the,[developers],list
+}}}
+where someNewGroupName is a group name not necessarily the same as `subversion`
+  - add further down a section [/] under which you put the lines:
+{{{
+* = r
+@someNewGroupName = rw
+}}}
+  - (this statement in uncertain =>) so as to prevent you from writing to google code's imported wiki folder do, add a section:
 {{{
 [/wiki]
 #with nothing in it or with @someNewGroupName = r, TODO try with none
@@ -104,14 +116,14 @@ in file '/svn/repo'/conf/authz:
 
 *g)* in order for svnserve,svnadmin and svnlook to preserve the user and group permissions when editing/creating files, create wrapper scripts which setup a umask 002 before executing the actual programs:
 for example for svnserve:
-- rename /usr/bin/svnserve to /usr/bin/_svnserve
-- create a file /usr/bin/serve containing script:
+  - rename /usr/bin/svnserve to /usr/bin/_svnserve
+  - create a file /usr/bin/serve containing script:
 {{{
 #!/bin/sh
 umask 002
 /usr/bin/_svnserve "$@"
 }}}
-*e)* if you want /virtual/root abstraction you can use the -r /my/virtual/root/to/abstract here
+*e)* if you want /virtual/root abstraction you can use the `-r /my/virtual/root/to/abstract` option here.
 
 *f)* we don't need to run svnserve as a daemon, it will be run in tunnel mode -t with possible -r virtual/root if you've defined that latter option in the wrapper script.
 
