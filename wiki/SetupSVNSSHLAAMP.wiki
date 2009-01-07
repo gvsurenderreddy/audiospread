@@ -4,8 +4,6 @@
 *Contents*
 <wiki:toc max_depth="5" />
 
-= Note: This page is WIP + discovery don't take it as sure information =
-
 == Introduction ==
 
 We hope through this documentation to give you more input on setting up [DevelopmentToolsDeployment our development server].
