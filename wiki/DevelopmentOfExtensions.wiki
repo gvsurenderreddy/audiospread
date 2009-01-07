@@ -8,9 +8,18 @@ Some info on extending Asterisk and Drupal functionalities by creating modules a
 = Extending Asterisk =
 
 == Adding new sounds to Asterisk ==
-You should follow the tutorial at [http://www.voip-info.org/tiki-index.php?page=Convert+WAV+audio+files+for+use+in+Asterisk this page] to do the following things:
+On [http://encyclopedia.wordpress.com/2007/09/25/asterisk-writing-native-extensions-for-asterisk-12/ this encyclopedia page], Justin Tunney says:
+"The core encoding method for Asterisk is AST_FORMAT_SLINEAR, in which non-compressed audio is sampled 8000 times a second, with 16-bit signed samples." (those files in .sln extension)
+
+For conversion into .gsm (natively accepted by Asterisk): once you have some files to convert, you should follow the tutorial at [http://www.voip-info.org/tiki-index.php?page=Convert+WAV+audio+files+for+use+in+Asterisk this page] to do roughly the following things:
   # Convert your sound files to .gsm or .sln file format using sox or whatever software application you want.(1)
   # Move your files to /usr/share/asterisk/sounds/ (and inside another folder of your choice if you want).
   # In extensions.conf (from /etc/asterisk/) you Playback() and !BackGround() calls should refer to your file name's path relative to /usr/share/asterisk/sounds/ and without any extension (no .gsm or .wav if ever you manage to make .wav played).
 
 (1) note: If you use sox, the `sox source.wav dest.gsm` command without more options may not be sufficient to give the right results because the sampling rate is obviously unchanged between source and destination. If that sampling rate is too high, Asterisk will play the gsm at less than the speed you want.
+
+== Coding new functions to be used in the dialplan ==
+_All quoted stuff comes from [http://encyclopedia.wordpress.com/2007/09/25/asterisk-writing-native-extensions-for-asterisk-12/ this page] written by Justin Tunney._
+"The following directories in the Asterisk source tree are important and worth mentioning."
+
+  * "funcs/ Where custom dial plan function modules are stored. Custom functions are registered with ast_custom_function_register()."
