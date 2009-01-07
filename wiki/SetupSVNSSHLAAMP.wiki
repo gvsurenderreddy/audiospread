@@ -72,152 +72,48 @@ If not, install svn:
 
 And now we have all the needed software for an SVN+SSH server.
 
-== Add users into an linux user group, create repositories, set up SVN users access ==
+== SVN+ssh repository creation quick steps ==
 
-=== Adding new Linux users into a new svn-specific linux user group ===
-Before touching the actual SVN part, we'll create a few linux users who will be able to:
-  * ssh into the server with their linux username and password
-  * contribute to the project repositories hosted on the server (SVN read/writing) over svn+ssh with their linux username and password
-  * optionally have a /home/theirname directory and do sudo actions (this sudo thing is Ubuntu-default).
+*a)* create/decide on developer user accounts list to have read/write access to our repository, which we name `[developers]`
 
-For this we'll namely use adduser which takes you into a simple wizard. After that wizard, a folder with the entered new username will be created inside the /home folder (ie /home/newloginforthisuser/) copying the contents from the template folder /etc/skel.
+*b)* create a 'subversion' group and add the developer users to it.
 
+*d)* create the directory '/svn' that will contain your repositories. Give it permissions at least for 'subversion' group read,write,execute and set group user id for folder (g+s):
 
-1. Create a linux user group named "svn" (or whatever you want) that'll be helpful for repository access setting & synchronisation later.
+*or*
+
+if the directory to host our repositories already exists, make sure it that all the folders in the path have +x permissions for our 'subversion' group or +x permissions for others
+chown :subversion '/svn'; chmod g+rws '/svn'
+
+*e)* create repository 'repo' within '/svn' with svnadmin create. Note that all the folders have their group in r-s (s is the interesting part), making so that every file/folder created within them belongs to group 'subversion'.
+Make everything group-editable:
+find '/svn/repo' -type d -exec chmod g+rwx {} \;#allows adding files into folder
+find '/svn/repo' -type f -exec chmod g+rw {} \;#allows all files to be modified by group
+
+*f)* setup 'repo' to accept developers read/writes from the developers users from list [developers]:
+in file '/svn/repo'/conf/authz:
+- in section `[groups]` add line someNewGroupName = the,developers,from,the,`[developers]`,list where someNewGroupName is a group name not necessarily the same as 'subversion'
+- add further down a section [/] under which you put the lines:
+    - `*` = r
+    - @someNewGroupName = rw
+- (this statement in uncertain =>) so as to prevent you from writing to google code's imported wiki folder do, add a section:
 {{{
-sudo addgroup svn`
+[/wiki]
+#with nothing in it or with @someNewGroupName = r, TODO try with none
 }}}
 
-2. Create one or more (type the command several times) unix users with no specific rights on your server:
+*g)* in order for svnserve,svnadmin and svnlook to preserve the user and group permissions when editing/creating files, create wrapper scripts which setup a umask 002 before executing the actual programs:
+for example for svnserve:
+- rename /usr/bin/svnserve to /usr/bin/_svnserve
+- create a file /usr/bin/serve containing script:
 {{{
-sudo adduser newloginforthisuser svn #add a user and put it into the svn group directly
+#!/bin/sh
+umask 002
+/usr/bin/_svnserve "$@"
 }}}
-*note:* other ways to add users to a group are:
-  * with `vigr` or `vi /etc/group` by appending your developers' usernames to the line starting with the group name you want.
-  * with `usermod -a -G aGroupName usernameToAddToGroup` (or `echo username1 username2 ... | xargs -d' ' -L 1 usermod -a -G aGroupName` to add several users to the same group in one shot)
+*e)* if you want /virtual/root abstraction you can use the -r /my/virtual/root/to/abstract here
 
-3. this command makes you create an extra administrator if you need to..
+*f)* we don't need to run svnserve as a daemon, it will be run in tunnel mode -t with possible -r virtual/root if you've defined that latter option in the wrapper script.
 
-Note that if the login name you type as a first parameter is an existing user's name, then that user will be added to the admin group making that person able to edit all your system's files as a root person.
-{{{
-sudo adduser newloginfortheadminuser admin
-}}}
-
-By default, the users created with minimum rights (from 1)) shall not be able to read/touch other users' files.
-
-In then end you can see who's in the admin and svn groups by typing: `cat /etc/group | grep -wE "svn|admin"`
-
-=== Creating repositories spaces locally ===
-To have a repository path from outside looking like `svn+ssh://serverAdress/svn/projectname` and so without setting up URL rewriting, the easiest is to do the following as a root user:
-
-  # create a folder named _svn_ in your root folder: `mkdir /svn`. This will be the folder to contain one more project repositories.
-  # make svn create a repository in that folder: `svnadmin create /svn/myprojectname`
-You can list the new repository folder to ensure `svnadmin` has done its job:
-{{{
-$ ls /svn/myprojectname
-conf  dav  db  format  hooks  locks  README.txt
-}}}
-
-=== Setting up repository users access ===
-Now we should edit our create repository's folder to setup user rights.
-What is cool with the SVN+SSH way of accessing a repository is that from the moment users have a (linux) user account on the machine, they just need to have that same username written in a repository's config file to be able to access that repository.
-
-Edit your newly created repository's config file:
-{{{
-$ cd /svn/myprojectname/conf/
-}}}
-
-In the files there, we have `passwd` which lets you set custom password for svn users who probably are not unix users on your machine, and `authz` allowing you to set permissions for users created (whether it be for accounts defined within `passwd` or for existing linux user accounts from the machine).
-
-In our case, it is simpler to say that we want to reuse the linux user accounts from the machine, so we edit only `authz` for our setup.
-{{{
-$ ls
-authz  passwd  svnserve.conf
-$ vi authz #you can use nano, emacs, mcedit or a graphical text editor for example
-}}}
-
-Modify the file to have something like:
-{{{
-[groups]
-someGroupName = linux,usernames,of,your,developers
-
-[/]
-* = r
-@someGroupName = rw
-}}}
-Note that we had a linux group named `svn` and that reusing that name in the `authz` file will not (obviously per our tests...) make svnserve understand that all users in the linux `svn` user group will have SVN r/w rights. This is why we have written `someGroupName` here instead, which will have a meaning only for svn and in some way is unimportant, and also why we have added all of our people's username again.
-All in all, for an svn+ssh setup, we can say that SVN seems to be aware of the linux usernames, but not of linux user group names.
-
-=== Putting the right permissions to your repository ===
-TODO : We are not sure of this !
-All your developers are in a same `svn` linux group.
-
-In order for them to be able to read/write into the repository (checking out and updating should be ok, but commiting will give permissions errors without that), you need to grant access to both root and your svn-specific user group recursively (on all the file & folders hierarchy of your repository):
-{{{
-chown -R root.svn /svn/myprojectname #where svn is your linux user group name for svn
-                                     #which we created at the beginning
-find /svn/myprojectname -type d | xargs chmod -R u+rwx,g+rwx,o-rwx #makes the folders read/write/executable by root and your developers' group
-find /svn/myprojectname -type f | xargs chmod -R u+rw,g+rw,o-rwx #makes all your files read/writeable by root and your developers' group.
-}}}
-
-=== Adding umask 002 to all your users .bashrc to preserve permissions&ownership ===
-This is necessary so that everytime a user acts upon the server (read/write) over svn+ssh, the permissions and ownerships of the repositories files remain unchanged.
-
-For all of the developers which you've added to the repository as read/writers, edit their `/home/developerName/.bashrc` file adding `umask 002` inside it if not present. For info, the default umask is 022 usually.
-
-A quick way is with file redirection:
-{{{
-echo "umask 002" >> ~someUserName/.bashrc
-}}}
-The first two zeros in `002` make that when new files are created they'll have the rights 666-002 => 664 => rw-rw-r. (From "what the web says", for directories and executables the calculation should take 777 instead of 666).
-
-So if we remember our `chown` and `chmod` operations in the last paragraph, for text files... user (root) will be able to: read-write, group (svn/the developers group) to read-write and others only to read.
-
-=== Rapid local testing of the SVN server ===
-
-You should have a working svn+ssh repository now.
-Test it like so:
-{{{
-#on the same machine as the create repository
-# log into a developer's linux account because he/she'll have svn read/write rights
-$ su someDeveloperUserName
-#type a password here probably
-# go to your home
-$ cd
-# create a folder for our checkout (creation of a working with the same contents are our svn server)
-$ mkdir svnsshtest
-# go into that folder
-$ cd svnsshtest
-
-# checkout your project's repository
-# since we're doing svn+ssh, there's first an SSH action using your own linux username (the "someDeveloperUserName" above), and then an svn action "through this connection" (obviously made locally on the machine)
-$ svn checkout svn+ssh://localhost/svn/myprojectname
-# type your regular linux password for account "someDeveloperUserName"
-# you should read "At revision 0." or something similar
-
-# now let's test svn committing
-# create some file
-$ echo "text" > myFile
-# ask svn to take the latter into account for existence in the repository/versioning
-$ svn add myFile
-# send all the changes (roughly just a file add) to the server
-$ svn commit
-#you should read "A myFile"("A" at the beginning stands for an "Add") and below probably "At revision 1." or something similar
-
-# just to show that reading from the remote server does work (we've tested it with the checkout someway...)
-$ svn update
-# you get something like "At revision 1."
-}}}
-
-== Magic python script for quick SVN repository creation ==
-Assuming you have created a linux user group and have added your developers linux users into it (this is what is done in [http://code.google.com/p/audiospread/w/edit.do#Adding_new_Linux_users_into_a_new_svn-specific_linux_user_group this paragraph]), the script below:
-  # creates a repo named how you want inside /svn/ (edit the script to change that...)
-  # adds your developers' as r/w in the repo's ./conf/authz file so they can read/write from/to your project's repo over at least svn+ssh.
-  # changes the repository's permissions with chown appropriately.
-  # tests the repo for you on the local machine in your own /home/yourusername/svnRepoTestNNN folder. (N is random)
-
-[http://someurl.com Download the script here]. We release it as public domain.
-
-== for later ==
-(custom pastebin for later user...)
-There is no need to create Linux user accounts for making VoIP phone calls to the server (connection to the Asterisk server on port 5690) and viewing its web pages (connection to the Apache server on port 80 (HTTP)). The logins we create there are for people that will contribute code directly to SVN.
+== making live WWW and config files folder ==
+TODO
