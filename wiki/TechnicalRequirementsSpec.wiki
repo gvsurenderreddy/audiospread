@@ -1,0 +1,149 @@
+#summary The requirements specification.
+
+= Introduction =
+
+This page lists shortly though hopefully completely the needs of the AudioSpread solution.
+It should help :
+  * find technologies/applied designs to use to translate those requirements into code/solution
+  * write the roadmap with including its different milestones
+
+
+= Details =
+4.3. Operational requirements
+4.3.1. Environment
+
+ 
+When operated and used by administrators and/or callers, the AudioSpread solution must meet several well-defined requirements related to its hardware and software environments.
+
+    4.3.1.1. Hardware environment
+
+    Server minimum specifications
+
+    The AudioSpread solution, considered as running on a Linux server, will on top of _x86 architecture_ computers because those are mainstream and will spare the development team from recompiling some Linux packages.
+--------------------
+== ADDITION ==
+asterisk server and web server operations will likely be separate in two seperate locations (because this is what happens most of the time and it's cheaper).
+
+the asterisk server is mostly controlled by the web server while it can give some incoming call data to the latter.
+
+the asterisk server will be the server on which uploaded & recorded files are kept.
+
+This means that :
+
+  * a phone recording through the asterisk server remains on the server but is signaled to the web server for info that some new recording exists.
+
+  * an HTTP upload through the web server actually will send the uploaded files, temporarily stored on the server to the asterisk server in the end.
+
+=== we decide not to do any webDAV contrary to the emails we had before (trust Jonathan for that, or we'll imagine & implement that very much later if needed but not for STBv1)! ===
+
+in the end:
+
+the web server contains the info on:
+  * what the categories are and how they are embedded into one another (remember: up to 2 levels of categories); what the programs are and how they are embedded into the categories.
+  * with a category = a string for a name, a link to a list of drupal roles of who has web read/write of the category's name & subcontent + another list of drupal roles of who(what kind of subscription, we could just create drupal roles which are useless on drupal side, but read/transmitted to the asterisk server...) has telephone listen access to the category's title + subcontent.
+
+== END ADDITION ==
+-------------------
+
+    That server would not need to be located within a radio station's own premises. to have a _CPU_ of at of at least 1GHz and 256 Mo of _RAM_ so as to be able to handle at maximum of 10 simultaneous callers (as mentioned in part 4.1.) with less than 5 administrators connected to the web interface.
+
+     
+    Development solution plugging to network
+
+    During the project development, the server will only support _VOIP_ calls because it will plugged to a _LAN_ network through a usual Ethernet board. In such a deployment, the server will be callable through the use of _Softphone applications_ installed distinct computers, or with several such applications running a same distinct computer.
+
+     
+    Deployed solution plugging to network
+
+    When deployed in real life situations such as in developing countries radio stations, the server will likely be plugged to two landlines through a telephone board: one for handling Premium users calls and the other for handling unsubscribed users. It will be possible to call the server with any kind of landline and mobile phones. The Premium subscription option will allow callers geared with a mobile phone to just send _SMS_ to receive contents of a menu. If users with such a subscription miss a mobile phone, they'll be prompted on call-in with a proposal to be called back right away by the AudioSpread server so as to not pay any money in case communication costs are not shared but usually paid the by the calling person.
+
+ 
+
+    4.3.1.2. Software requirements
+
+4.3.2. Operation
+
+== TODO ==
+== Drupal Side ==
+=== Business Manager Module ===
+
+
+=== Content Manager Module ===
+This module shows to the user to two levels of categories containing audio programs in a scheme similar to the folders and file schema common to normal computer systems. This schema being shown, does not mean that the internal/backend structure of those files & categories are disposed the same way on disk.
+Note for info: [http://drupal.org/project/filebrowser as said in the filebrowser module] says nice things about the possibility to add metadata to folders & files:
+* "Allows site administrators to expose a particular file system folder and all of its subfolders with a fancy FTP-like interface to site visitors. File metainformation (via descript.ion and files.bss) is supported. The module also allows these metafiles to store special content, which can be parsed with a callback. If no callback is specified in the file, only the description will be fetched."
+
+* IMCE drupal module also looks interesting:
+http://webscripts.softpedia.com/screenshots/IMCE-26402.png
+http://drupal.org/project/imce
+
+there one can:
+categories:
+  * select one or more categories at once
+  * make a category to have state unpublished or not published, and in addition to that a property telling for each category which kinds of phone subscribers can access to the concerned category when published.
+  * create/delete categories (with their subcontent else, refuse to delete, subcontent has to be moved elsewhere first). Note, it's possible
+  * move selected categories inside others (with their recursive subcontent to be practical)
+  * a category data structure is as follows:
+    # a category id/name (string, corresponds to exact folder name on hard drive)
+    # a category text name displayed which is the main representation to display the category on the web.
+    # a category sound file name (to be said in the menu) same principle as sound file title for programs
+    # details text field (for web only)
+    # un/published boolean
+
+programs:
+  * upload programs over http (*NO WEBDAV FOR NOW!*)
+  * uploaded & phone-recorded programs are placed upon creation to a category or place named "Temporary". User has to move them from there to a category for them to be published.
+  * each file where it is has an published/unpublished state changeable by user making it visible or not over phone.
+  * a program's data structure is as follows:
+    # a program ID (a string, correspond to exact program ".info" file name)
+    # program text title
+    # program audio title file (ie a audio file saying "A story of white bears" so it can be concatenated in the menus with "type" "N" "to hear" "A story of white bears".
+    # program text summary
+    # program audio summary (can be played when user asks to know more about the program while not playing it yet)
+    # the program audio file itself
+    # un/published boolean
+
+web app representation <====> real hard drive presence
+1 program <=> 1 .info file accompanied or not with audio files
+1 category <=> 1 folder
+
+=== Content Manager Module ===
+TODO someone ?
+
+== Telephone ==
+TODO jonathan & xavier
+
+== END TODO ==
+4.4. Interfaces with the extern actors of the system
+4.4.1. Man-Machine interface
+
+    Your browser may not support display of this image.4.4.1.1. Caller mobile interface
+
+    The caller will be able to choose the programs he wants to listen thanks to his mobile keypad. The IVR technology will be used. Interactive voice response, or IVR, is a technology that allows a computer to detect voice and keypad inputs. That way the caller will choose the different category by pressing the different numbers.
+
+    For example:
+
+    IVR: “If you want to record a message press 1, if you want to listen a program press 2”
+
+    CALLER: press 1.
+
+    IVR:”Agricultural news press 1, economical news press 2, sports news press 3…”
+
+    …
+
+    Your browser may not support display of this image.4.4.1.2. Administrator computer interface
+
+    The administrator will be able to manage the server database thanks to a basic computer interface.
+
+4.4.2. Softwares interfaces
+== TODO LATER ? ==
+    4.4.2.1. Internet browser 
+
+    The administrator computer interface will work thanks to an internet browser as Microsoft Internet Explorer, Mozilla, Opera. He will access to the manage webpage with a HTTPS protocol. This protocol allows an encrypted and secure interface.
+
+    Your browser may not support display of this image.4.4.2.2. Softphone
+
+4.4.3. Files or data base
+WebDAV
+
+== END TODO LATER ==
