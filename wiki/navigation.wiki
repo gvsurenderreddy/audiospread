@@ -4,12 +4,17 @@
   * [DevelopmentRoadmap Development Roadmap]
   * [ProjectManagementMethodology Project Management Methodology]
 
-*Developer Documentation*
-  * [DevelopmentOfExtensions Extending Drupal & Asterisk]
-  * [DevelopmentToolsDeployment Deployment of tools for development]
-  * [SetupSVNSSHLAAMP Setting up an svn+ssh/asterisk/apache server]
-  * [SSHTunneling SSH Tunneling for development&testing]
+*Project Design*
+  * [TechnicalRequirementsSpec Technical requirements specification]
   * [DeliverablesDeploymentPrepration Deliverables and deployment preparation]
+
+*Development Collaboration Tools*
+  * [DevelopmentToolsDeployment Live svn + web & asterisk overview ]
+  * [SetupSVNSSHLAAMP How we setup svn+ssh/asterisk/apache server]
+  * [SSHTunneling SSH multi-tunneling for svn+ssh,http,asterisk]
+
+*Development How-Tos*
+  * [DevelopmentOfExtensions Extending Drupal & Asterisk]
 
 *End-user Documentation*
   * [EndUserInstallation Installing AudioSpread on Ubuntu]
