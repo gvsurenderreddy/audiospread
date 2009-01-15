@@ -1,0 +1,10 @@
+#summary The most important Google Docs used in our project.
+
+= The Project's Google Documents =
+
+This lists the project's most mattering Google Documents.
+You need to logged into your Gmail/Google Docs account to view them and must have been invited (inter_team mailing list).
+
+== Project Management ==
+
+TODO : add links to 3 documents here.
