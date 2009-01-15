@@ -8,15 +8,23 @@
   * [TechnicalRequirementsSpec Technical requirements specification]
   * [DeliverablesDeploymentPrepration Deliverables and deployment preparation]
 
-*Development Collaboration Tools*
+*Development Tools*
+
+_*Collaboration*_
+
   * [DevelopmentToolsDeployment Live svn + web & asterisk overview ]
   * [SetupSVNSSHLAAMP How we setup svn+ssh/asterisk/apache server]
   * [SSHTunneling SSH multi-tunneling for svn+ssh,http,asterisk]
+
+_*General*_
+  * [IDECodingTools Coding tools / IDEs]
 
 *Development How-Tos*
   * [DevelopmentOfExtensions Extending Drupal & Asterisk]
 
 *End-user Documentation*
   * [EndUserInstallation Installing AudioSpread on Ubuntu]
+
+*[AllGDocsLinks The Project's Google Documents]*
 
     http://audiospread.googlecode.com/files/InterspreadLogo.PNG
