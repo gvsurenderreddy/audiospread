@@ -3,8 +3,14 @@
 = The Project's Google Documents =
 
 This lists the project's most mattering Google Documents.
-You need to logged into your Gmail/Google Docs account to view them and must have been invited (inter_team mailing list).
+*You need to logged into your Gmail/Google Docs account to view them* and must have been invited (inter_team mailing list).
+
+*Warning: if one of the document is public while it shouldn't, try to unpublish and/or contact its owner so he/she does it.*
 
 == Project Management ==
+  * [http://docs.google.com/Doc?id=dcsrtj3t_3cb52wddk AudioSpread - Team work processes]
+  * [http://docs.google.com/Doc?docid=dcsrtj3t_0dsd2xggg AudioSpread - Architecture overview]
+  * [http://docs.google.com/Doc?docid=dcsrtj3t_1ng7s2dhm AudioSpread - Team roles - Technical & Non-technical]
 
-TODO : add links to 3 documents here.
+== Team ==
+  * [http://spreadsheets.google.com/ccc?key=psCsnZf9uMeVSoESnvjMeJg AudioSpread - Trombinoscope / Employees directory]
