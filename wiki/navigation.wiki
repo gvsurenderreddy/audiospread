@@ -3,8 +3,12 @@
 *!AudioSpread Project Management*
   * [DevelopmentRoadmap Development Roadmap]
   * [ProjectManagementMethodology Project Management Methodology]
+_*Team Responsibilities*_
+  * [WhoDoesWhatPPEResps PPE responsbilities]
+  * [WhoDoesWhatTechDevResps Development responsibilities]
 
 *Project Design*
+  * [ArchitecturesSummary Architecture summary]
   * [TechnicalRequirementsSpec Technical requirements specification]
   * [DeliverablesDeploymentPrepration Deliverables and deployment preparation]
 
