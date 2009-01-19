@@ -37,6 +37,6 @@
 *Chief:* Jonathan
 
 *Developers:* Jonathan
-===<font color="red">Synchronize content/trees/info</font>===
+===<font color="red">Synchronize content/trees/info between the two servers</font>===
   * <font color="red">Drupal => Asterisk</font>
   * Asterisk => Drupal
