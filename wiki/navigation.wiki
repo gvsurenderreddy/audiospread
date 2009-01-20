@@ -4,7 +4,7 @@
   * [DevelopmentRoadmap Development Roadmap]
   * [ProjectManagementMethodology Project Management Methodology]
 _*Team Responsibilities*_
-  * [WhoDoesWhatPPEResps PPE responsbilities]
+  * [WhoDoesWhatPPEResps PPE responsibilities]
   * [WhoDoesWhatTechDevResps Development responsibilities]
 
 *Project Design*
