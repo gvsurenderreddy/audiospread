@@ -27,6 +27,14 @@
         * 1 program = 1 _CCK_-modified node with
         * category tagging thanks to Taxonomy
         * file attachment/uploading thanks to the _fileframework_ module.
+      * the tree has a "minimals" category containing:
+        * subcategories for each kinds of menu contexts:
+          * home,recording,categories,programs,playing,support...
+        * all the required audio files/filenames for the phone menus minimal operation.
+        * ie. welcome message, category menu info message, programs menu info message, bookmarks info message..
+        * Items not overridden will result in picking from:
+          # chosen language pack,
+          # if no such pack, from default language pack.
 
 ==!AudioSpread Asterisk Server==
   * a *permanent storage* for *audio files*:
