@@ -40,3 +40,11 @@
 ===<font color="red">Synchronize content/trees/info between the two servers</font>===
   * <font color="red">Drupal => Asterisk</font>
   * Asterisk => Drupal
+
+--------
+==Audio & Text Content Creation==
+*Chief:* Elie
+
+*Developers:* Elie
+  * Create all the needed example audio files.
+  * Create all the needed example text files to go along.
