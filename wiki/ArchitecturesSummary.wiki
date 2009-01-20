@@ -1,4 +1,5 @@
 #summary A synthesis of the !AudioSpread solution architecture
+#labels Featured
 
 =Summary of the !AudioSpread servers architecture=
 
