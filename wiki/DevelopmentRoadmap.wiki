@@ -4,6 +4,7 @@
 
 <wiki:toc max_depth="2" />
 
+---------
 == 0.01 Drupal, Asterisk, content creation Discovery ==
 *Drupal team*
   * [http://code.google.com/p/audiospread/issues/detail?id=6 Install Drupal, discover builtin taxonomies, the CCK and fileframework]
@@ -12,6 +13,7 @@
 *Content creation team*
   * [http://code.google.com/p/audiospread/issues/detail?id=8 find a practical workflow to record/get & convert any audio files into mp3.]
 
+---------
 == 0.05 Base server stacks deployed & working ==
 Write manuals for the following steps ?
 On our main server at rue de Grenelle (JBTV):
@@ -28,7 +30,6 @@ On our main server at rue de Grenelle (JBTV):
   * Asterisk can be called from local area network and from outside with a softphone 
 
 ----
-
 == 0.1 Install is ready for development ==
   * Drupal & Asterisk's seperate folders for modules created 
   * The latter folders are versioned properly
