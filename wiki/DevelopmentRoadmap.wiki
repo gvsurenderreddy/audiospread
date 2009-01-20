@@ -4,6 +4,14 @@
 
 <wiki:toc max_depth="2" />
 
+== 0.01 Drupal, Asterisk, content creation Discovery ==
+*Drupal team*
+  * [http://code.google.com/p/audiospread/issues/detail?id=6 Install Drupal, discover builtin taxonomies, the CCK and fileframework]
+*Asterisk team*
+  * [http://code.google.com/p/audiospread/issues/detail?id=7 Install Asterisk + an SIP softphone, call a local Asterisk sever over SIP with the softphone.]
+*Content creation team*
+  * [http://code.google.com/p/audiospread/issues/detail?id=8 find a practical workflow to record/get & convert any audio files into mp3.]
+
 == 0.05 Base server stacks deployed & working ==
 Write manuals for the following steps ?
 On our main server at rue de Grenelle (JBTV):
