@@ -24,4 +24,3 @@ Work in progress documents for the STB. (spécification technique de besoins = r
 == DA WIP ==
 Work in progress documents for the DA. (dossier d'architecture = architecture document)
   * [http://code.google.com/p/audiospread/wiki/ArchitecturesSummary Architecture summary]
-(see Architecture summary)
