@@ -14,3 +14,14 @@ This lists the project's most mattering Google Documents.
 
 == Team ==
   * [http://spreadsheets.google.com/ccc?key=psCsnZf9uMeVSoESnvjMeJg AudioSpread - Trombinoscope / Employees directory]
+
+== Requirements (STB) WIP ==
+Work in progress documents for the STB. (spécification technique de besoins = requirements)
+  * [http://docs.google.com/Doc?docid=dcsrtj3t_187v8sgwvd2&hl=en STB Phone]
+  * [http://docs.google.com/Doc?id=dc4h9wz4_3fggkgprx STB Content Manager Module]
+  * STB business manager TODO link missing
+
+== DA WIP ==
+Work in progress documents for the DA. (dossier d'architecture = architecture document)
+  * [http://code.google.com/p/audiospread/wiki/ArchitecturesSummary Architecture summary]
+(see Architecture summary)
