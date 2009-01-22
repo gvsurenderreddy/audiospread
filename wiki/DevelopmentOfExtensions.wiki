@@ -5,6 +5,24 @@
 
 Some info on extending Asterisk and Drupal functionalities by creating modules and such.
 
+= Extending Drupal =
+
+== Installing new modules ==
+
+Drupal modules usually ship as a tar.gz archive which we have to extract to the drupal's /modules/ folder (for example: /var/www/drupal/modules). After extraction, go to the drupal administration interface (log in as an administrator user and go to Administer), go to Site building then Modules and chose to "run cron manually" if necessary or just observe that new modules have been installed.
+
+For each module, we can enable or disable features by ticking checkboxes. Although, some features require other modules to be installed first. This is the case of the 
+
+== Installing the File Framework and getting its File Browser up ==
+
+The *fileframework module* can be downloaded from [http://drupal.org/project/fileframework/ this page]. Download the latest/available version, it should be ok.
+
+In order to have the file browser up, we need to:
+  # install the *[http://drupal.org/project/rdf/ RDF module]* and the *[http://drupal.org/project/bitcache Bitcache module]* (Important, *don't download alpha-3 see (1)* !).
+  # in Drupal's interface, log in as an administrator go to Administer > Site building > Modules > File management: *enable the "Browser" feature*.
+
+(1) Either download the alpha2 version (from december 2008) or the last development version (from 14 january 2009 or later), but not alpha-3 which is buggy and won't allow you to create any new piece of content ! Use [http://drupal.org/node/192590/release this link to be able to download more versions] of the Bitcache module.
+
 = Extending Asterisk =
 
 == Adding new sounds to Asterisk ==
