@@ -36,7 +36,7 @@ Once the two above-mentioned modules are installed and enabled, configuration fo
 
 In Drupal, this is possible to let modules or information be located on left,right,top and bottom (footer) regions/panes/sidebars of all or specific pages. The sort of widgets/information that modules can put in these regions on request is called blocks.
 
-Once some module is enabled (built-in ones are automatically enabled), go to Administer > Site building > Blocks. Then go to the "Disabled" section to see blocks that have not been assigned a region yet, and for the block you want to place somewhere change the drop-down box which is "<none>" to something such as "Left sidebar".
+Once some module is enabled (built-in ones are automatically enabled), go to Administer > Site building > Blocks. Then go to the "Disabled" section to see blocks that have not been assigned a region yet, and for the block you want to place somewhere change the drop-down box which is `<none>` to something such as "Left sidebar".
 
 Be sure to click "Save blocks" at the bottom of the page to submit changes.
 
