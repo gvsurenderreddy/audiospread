@@ -14,32 +14,33 @@
   * [http://code.google.com/p/audiospread/issues/detail?id=8 find a practical workflow to record/get & convert any audio files into mp3.]
 
 ---------
-== 0.05 Base server stacks deployed & working ==
-Write manuals for the following steps ?
+== 0.01b Server is ready for development (Live SVN+Asterisk+Drupal) ==
+Write documentation for the following steps ? _*Started, still to rethink and TOCONTINUE*_
 On our main server at rue de Grenelle (JBTV):
   * ~~LAMP stack installed (Ubuntu)~~ *DONE*
   * network-specific requests made to ECE admin:
-    * we have our own Ethernet plug hole & fixed IP
-    * Internews has a custom ECE unix account (can be delayed...)
-    * SSH possible from within local area network 
-    * SSH possible from outside 
-  * user accounts = same accounts used for committing 
-  * Drupal installed 
-  * Asterisk installed 
-  * SVN is working from-to sourceforge repository from within ECE 
-  * Asterisk can be called from local area network and from outside with a softphone 
+    * ~~we have our own Ethernet plug hole & fixed IP~~ *DONE*
+    * ~~SSH possible from within local area network~~ *DONE*
+    * ~~SSH possible from outside~~ *DONE*
+    * ~~Internews has a custom ECE unix account (can be delayed...)~~ *SKIPPED*, see following task
+    * create tunneler application for windows & linux that ships with binary-hidden authentication login & password. Tunneling for ssh,http,asterisk,mysql _*STARTED*_
+  * _user accounts = same accounts used for committing_ _*PARTLY DONE*_ (working, missing Intracorp's logins)
+  * LAMP + Drupal installed
+  * Asterisk installed
+  * Live SVN for Asterisk files (config & sounds)
+  * Live SVN for Drupal&Apache's files
+  * Live SVN for Intracorp
+_*Note: we do no MySQL versioning. Mysql will have to be used remotely
+  * SVN syncing from server towards Google Code repo (_*may be skipped for project time, though it is much feasible*_)
+  * Asterisk can be called from local area network and from outside with a softphone (_*tested on personal machine, not server*_).
 
 ----
-== 0.1 Install is ready for development ==
-  * Drupal & Asterisk's seperate folders for modules created 
-  * The latter folders are versioned properly
-  * Auto-mirroring of svn code to Google Code is setup with svn hooks
+== 0.01c teams ready to develop ==
+  * Roadmap has some first steps/tickets for development that can be started.
   * Everyone knows how to work with:
-    * the roadmap,
-    * svn update, commit, conflicts, branch & tags,
+    * the roadmap which contains tasks for a long time,
+    * svn update, commit, conflicts, (branch & tags,)
     * code reviews & requests for reviews (while commit messages). See [http://code.google.com/p/support/wiki/CodeReviews here].
     * SSH tunneling through ECE's gandalf
-  * Testing team and other development teams are ready.
-  * Branches are created for first drafting of modules ? (maybe unneeded...)
+  * Testing team and other development teams are ready (sip+softphone/drupal account created).
   * Rational Unified Process & Agile Development methodologies have been reconciled and formalised, making the whole aware of those and how they are to be applied during the project.
-  * Roadmap has some first steps/tickets for development that can be started.
