@@ -1,32 +1,53 @@
-#summary Downloads for the AudioSpread project.
+#summary All downloads for the AudioSpread project.
 #labels Featured
 
-= !AudioSpread Downloads =
+= !AudioSpread downloads =
 
 == !AudioSpread releases ==
 None for now.
 
 == Development tools ==
 === multi_tunneler ===
-_*This cross-platform tool creates multiple tunnels/channels towards a single destination through an SSH tunnel to a single gate.*_
+_*A cross-platform tool to create multiple tunnels/channels towards a single destination through an SSH tunnel to a single gate.*_
+
+*Contact:* [mailto:inter_team_ppe_2008@googlegroups.com AudioSpread team].
+
+====Summary====
+This cross-platform tool creates multiple tunnels/channels towards a single destination through an SSH tunnel to a single gate.
 
 We use it in house to tunnel connections to MySQL, HTTP, (SVN+)SSH/SFTP, SIP daemons through our university gateway towards a LAMPA (last A is for Asterisk) server behind that gateway. It does the work expected for the tunneling boxes drawn on [http://audiospread.googlecode.com/files/DevelopmentWorkDeployment.png this project development diagram].
+
+====Documentation====
+There is some documentation in this wiki section. Plus make sure to read the example JSON file provided in all the archives below. This file's overview and a look at its "help" field give you a full specification of our JSON format's fields.
 
 An external JSON file is used to setup of the gate host's hostname and port, destination host's hostname, and correspondance between ports to open locally and ports to reach on destination host.
 
 To skip having to share a login & password, or to type the latters at each run:
-  # a module named provided_login_info.py containing string variables username and password can be put in the same folder as the executable so as to make the latter detect and use it.
-  # alternatively, login and password can be put within the JSON file's gate's dictionary structure.
+  # create a file `provided_login_info.py` in your `multi_tuneler` executable folder with content:
+{{{
+username="gateUsername"
+password="gatePassword"
+}}}
+  # alternatively, login and password can added into the JSON file's gate's dictionary structure:
+{{{
+[...]
+"gate": {
+    "hostname":"someIpOrHostname.com",
+    "port":AnInteger,
+    "username":"gateUsername",
+    "password":"gatePassword"
+    },
+[...]
+}}}
 Option 1. is interesting to make an executable embed and thus "hide" a login+password. Indeed, python "compilers" such as [http://www.py2exe.org/ Py2Exe] and [http://pyinstaller.python-hosting.com/ PyInstaller] most of the time provide the option to embed all imported modules into a single executable file.
 
 *Language:* [http://www.python.org Python 2.5+]
 
-*Libraries:*
+====Libraries====
   * [http://www.lag.net/paramiko/ paramiko]: a pure-python, cross-platform, sockets-based SSH2 implementation.
   * [http://docs.python.org/library/json.html simplejson]: a JSON parser and dumper. Renamed and made official under the name json from Python2.6.
 
-*Downloads:*
-
+====Downloads====
 The executables in the archive require nothing to run properly except your usual system libaries which you must have anyway.
 || Platform || Authentifies to gate for you || Does not authentify to gate for you ||
 || Windows  || [http://audiospread.googlecode.com/files/multi_tunneler_EmbeddedLogin.zip multi_tunneler_EmbeddedLogin.zip]|| [http://audiospread.googlecode.com/files/multi_tunneler_NoLogin.zip multi_tunneler_NoLogin.zip] ||
@@ -35,3 +56,5 @@ The executables in the archive require nothing to run properly except your usual
 
 _About python => executables packaging:_
 The Windows binary executables were packaged with [http://www.py2exe.org/ Py2Exe] and the Linux ones with [http://pyinstaller.python-hosting.com/ PyInstaller]. Setup files for that are included within the [http://audiospread.googlecode.com/files/multi_tunneler_source.tar.gz source archive].
+
+[http://code.google.com/p/audiospread/w/edit/WikiDownloads Edit this page.]
