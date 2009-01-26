@@ -1,6 +1,6 @@
 #summary All downloads for the AudioSpread project.
 #labels Featured
-
+[http://code.google.com/p/audiospread/w/edit/WikiDownloads Edit this page]
 = !AudioSpread downloads =
 
 == !AudioSpread releases ==
@@ -43,6 +43,11 @@ Option 1. is interesting to make an executable embed and thus "hide" a login+pas
 
 *Language:* [http://www.python.org Python 2.5+]
 
+====Known issues====
+When the executable is run from a remote folder than the it is located in (ie. `./../../multi_tunneler`), it tries to open the .json in the path you are calling from and thus does not find it. This can be fixed in code easily.
+
+For now, a workaround is to always execute the file its current folder.
+
 ====Libraries====
   * [http://www.lag.net/paramiko/ paramiko]: a pure-python, cross-platform, sockets-based SSH2 implementation.
   * [http://docs.python.org/library/json.html simplejson]: a JSON parser and dumper. Renamed and made official under the name json from Python2.6.
@@ -56,5 +61,3 @@ The executables in the archive require nothing to run properly except your usual
 
 _About python => executables packaging:_
 The Windows binary executables were packaged with [http://www.py2exe.org/ Py2Exe] and the Linux ones with [http://pyinstaller.python-hosting.com/ PyInstaller]. Setup files for that are included within the [http://audiospread.googlecode.com/files/multi_tunneler_source.tar.gz source archive].
-
-[http://code.google.com/p/audiospread/w/edit/WikiDownloads Edit this page]
