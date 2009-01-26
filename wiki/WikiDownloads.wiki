@@ -49,12 +49,12 @@ Option 1. is interesting to make an executable embed and thus "hide" a login+pas
 
 ====Downloads====
 The executables in the archive require nothing to run properly except your usual system libaries which you must have anyway.
-|| Platform || Authentifies to gate for you || Does not authentify to gate for you ||
-|| Windows  || [http://audiospread.googlecode.com/files/multi_tunneler_EmbeddedLogin.zip multi_tunneler_EmbeddedLogin.zip]|| [http://audiospread.googlecode.com/files/multi_tunneler_NoLogin.zip multi_tunneler_NoLogin.zip] ||
-|| Linux || [http://audiospread.googlecode.com/files/multi_tunneler_EmbeddedLogin.tar.gz multi_tunneler_EmbeddedLogin.tar.gz]|| [http://audiospread.googlecode.com/files/multi_tunneler_NoLogin.tar.gz multi_tunneler_NoLogin.tar.gz] ||
-|| Source || [http://audiospread.googlecode.com/files/multi_tunneler_source.tar.gz multi_tunneler_source.tar.gz] ||
+|| Platform || Authentifies to gate for you || Does not authentify to gate for you || Date uploaded ||
+|| Windows  || [http://audiospread.googlecode.com/files/multi_tunneler_EmbeddedLogin.zip multi_tunneler_EmbeddedLogin.zip]|| [http://audiospread.googlecode.com/files/multi_tunneler_NoLogin.zip multi_tunneler_NoLogin.zip] || Jan 26 2009 ||
+|| Linux || [http://audiospread.googlecode.com/files/multi_tunneler_EmbeddedLogin.tar.gz multi_tunneler_EmbeddedLogin.tar.gz]||[http://audiospread.googlecode.com/files/multi_tunneler_NoLogin.tar.gz multi_tunneler_NoLogin.tar.gz] || Jan 26 2009 ||
+|| Source || [http://audiospread.googlecode.com/files/multi_tunneler_source.tar.gz multi_tunneler_source.tar.gz] || -  || Jan 26 2009 ||
 
 _About python => executables packaging:_
 The Windows binary executables were packaged with [http://www.py2exe.org/ Py2Exe] and the Linux ones with [http://pyinstaller.python-hosting.com/ PyInstaller]. Setup files for that are included within the [http://audiospread.googlecode.com/files/multi_tunneler_source.tar.gz source archive].
 
-[http://code.google.com/p/audiospread/w/edit/WikiDownloads Edit this page.]
+[http://code.google.com/p/audiospread/w/edit/WikiDownloads Edit this page]
