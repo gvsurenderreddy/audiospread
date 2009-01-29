@@ -10,54 +10,6 @@ None for now.
 === multi_tunneler ===
 _*A cross-platform tool to create multiple tunnels/channels towards a single destination through an SSH tunnel to a single gate.*_
 
-*Contact:* [mailto:inter_team_ppe_2008@googlegroups.com AudioSpread team].
+This tool was created to help the development and client review of !AudioSpread. 
 
-====Summary====
-This cross-platform tool creates multiple tunnels/channels towards a single destination through an SSH tunnel to a single gate.
-
-We use it in house to tunnel connections to MySQL, HTTP, (SVN+)SSH/SFTP, SIP daemons through our university gateway towards a LAMPA (last A is for Asterisk) server behind that gateway. It does the work expected for the tunneling boxes drawn on [http://audiospread.googlecode.com/files/DevelopmentWorkDeployment.png this project development diagram].
-
-====Documentation====
-There is some documentation in this wiki section. Plus make sure to read the example JSON file provided in all the archives below. This file's overview and a look at its "help" field give you a full specification of our JSON format's fields.
-
-An external JSON file is used to setup of the gate host's hostname and port, destination host's hostname, and correspondance between ports to open locally and ports to reach on destination host.
-
-To skip having to share a login & password, or to type the latters at each run:
-  # create a file `provided_login_info.py` in your `multi_tuneler` executable folder with content:
-{{{
-username="gateUsername"
-password="gatePassword"
-}}}
-  # alternatively, login and password can added into the JSON file's gate's dictionary structure:
-{{{
-[...]
-"gate": {
-    "hostname":"someIpOrHostname.com",
-    "port":AnInteger,
-    "username":"gateUsername",
-    "password":"gatePassword"
-    },
-[...]
-}}}
-Option 1. is interesting to make an executable embed and thus "hide" a login+password. Indeed, python "compilers" such as [http://www.py2exe.org/ Py2Exe] and [http://pyinstaller.python-hosting.com/ PyInstaller] most of the time provide the option to embed all imported modules into a single executable file.
-
-*Language:* [http://www.python.org Python 2.5+]
-
-====Known issues====
-When the executable is run from a remote folder than the it is located in (ie. `./../../multi_tunneler`), it tries to open the .json in the path you are calling from and thus does not find it. This can be fixed in code easily.
-
-For now, a workaround is to always execute the file its current folder.
-
-====Libraries====
-  * [http://www.lag.net/paramiko/ paramiko]: a pure-python, cross-platform, sockets-based SSH2 implementation.
-  * [http://docs.python.org/library/json.html simplejson]: a JSON parser and dumper. Renamed and made official under the name json from Python2.6.
-
-====Downloads====
-The executables in the archive require nothing to run properly except your usual system libaries which you must have anyway.
-|| Platform || Authentifies to gate for you || Does not authentify to gate for you || Date uploaded ||
-|| Windows  || [http://audiospread.googlecode.com/files/multi_tunneler_EmbeddedLogin.zip multi_tunneler_EmbeddedLogin.zip]|| [http://audiospread.googlecode.com/files/multi_tunneler_NoLogin.zip multi_tunneler_NoLogin.zip] || Jan 26 2009 ||
-|| Linux || [http://audiospread.googlecode.com/files/multi_tunneler_EmbeddedLogin.tar.gz multi_tunneler_EmbeddedLogin.tar.gz]||[http://audiospread.googlecode.com/files/multi_tunneler_NoLogin.tar.gz multi_tunneler_NoLogin.tar.gz] || Jan 26 2009 ||
-|| Source || [http://audiospread.googlecode.com/files/multi_tunneler_source.tar.gz multi_tunneler_source.tar.gz] || -  || Jan 26 2009 ||
-
-_About python => executables packaging:_
-The Windows binary executables were packaged with [http://www.py2exe.org/ Py2Exe] and the Linux ones with [http://pyinstaller.python-hosting.com/ PyInstaller]. Setup files for that are included within the [http://audiospread.googlecode.com/files/multi_tunneler_source.tar.gz source archive].
+Please visit *[http://multitunneler.googlecode.com/ the multi_tunneler project's webpage]*, and check out the *[http://code.google.com/p/multitunneler/wiki/downloads?tm=2 Downloads section]*.
