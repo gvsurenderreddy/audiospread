@@ -23,12 +23,12 @@ On our main server at rue de Grenelle (JBTV):
     * ~~SSH possible from within local area network~~ *DONE*
     * ~~SSH possible from outside~~ *DONE*
     * ~~Internews has a custom ECE unix account (can be delayed...)~~ *SKIPPED*, see following task
-    * create tunneler application for windows & linux that ships with binary-hidden authentication login & password. Tunneling for ssh,http,asterisk,mysql _*STARTED*_
+    * create tunneler application for windows & linux that ships with binary-hidden authentication login & password. Tunneling for ssh,http,asterisk,mysql _*STARTED*_ *Customer version to do.*
   * _user accounts = same accounts used for committing_ _*PARTLY DONE*_ (working, missing Intracorp's logins)
-  * LAMP + Drupal installed
-  * Asterisk installed
-  * Live SVN for Asterisk files (config & sounds)
-  * Live SVN for Drupal&Apache's files
+  * ~~LAMP~~*DONE* + Drupal installed
+  * ~~Asterisk installed~~ *DONE*
+  * ~~Live SVN for Asterisk files (config & sounds)~~ *DONE*
+  * ~~Live SVN for Drupal&Apache's files~~ *DONE*
   * Live SVN for Intracorp
 _*Note: we do no MySQL versioning. Mysql will have to be used remotely
   * SVN syncing from server towards Google Code repo (_*may be skipped for project time, though it is much feasible*_)
