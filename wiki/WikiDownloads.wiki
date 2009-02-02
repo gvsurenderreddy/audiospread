@@ -1,6 +1,6 @@
 #summary All downloads for the AudioSpread project.
 #labels Featured
-[http://code.google.com/p/audiospread/w/edit/WikiDownloads Edit this page]
+
 = !AudioSpread downloads =
 
 == !AudioSpread releases ==
@@ -13,3 +13,6 @@ _*A cross-platform tool to create multiple tunnels/channels towards a single des
 This tool was created to help the development and client review of !AudioSpread. 
 
 Please visit *[http://multitunneler.googlecode.com/ the multi_tunneler project's webpage]*, and check out the *[http://code.google.com/p/multitunneler/wiki/downloads?tm=2 Downloads section]*.
+
+[http://code.google.com/p/audiospread/w/edit/WikiDownloads Edit this page]|
+[http://code.google.com/p/audiospread/downloads/entry See the Downloads List]
