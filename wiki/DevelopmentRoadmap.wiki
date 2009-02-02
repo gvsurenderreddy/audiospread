@@ -7,7 +7,10 @@
 ---------
 == 0.01 Drupal, Asterisk, content creation Discovery ==
 *Drupal team*
-  * [http://code.google.com/p/audiospread/issues/detail?id=6 Install Drupal, discover builtin taxonomies, the CCK and fileframework]
+  * ~~mySql database for drupal~~ *DONE*
+  * ~~Drupal installed~~ *DONE*
+  * ~~CCK,bitcache,rdf,views module installed~~ *DONE*
+
 *Asterisk team*
   * [http://code.google.com/p/audiospread/issues/detail?id=7 Install Asterisk + an SIP softphone, call a local Asterisk sever over SIP with the softphone.]
 *Content creation team*
