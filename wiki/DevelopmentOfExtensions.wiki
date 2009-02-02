@@ -1,6 +1,6 @@
 #summary Quick tips on writing extensions for Asterisk and Drupal.
 #labels Development,Extensions,Tutorials
-
+<wiki:toc max_depth="9" />
 = Extending Asterisk and Drupal =
 
 Some info on extending Asterisk and Drupal functionalities by creating modules and such.
@@ -13,26 +13,33 @@ Drupal modules usually ship as a tar.gz archive which we have to extract to the 
 
 For each module, we can enable or disable features by ticking checkboxes. Although, some features require other modules to be installed first. This is the case of the 
 
-== Installing the File Framework and getting its File Browser up ==
+== File Framework  ==
+The File Framework module helps to upload, download, remove, preview, convert files through the Drupal interface. It needs the RDF and Bitcache modules to enabled.
 
+=== Installation ===
 The *fileframework module* can be downloaded from [http://drupal.org/project/fileframework/ this page]. Download the latest/available version, it should be ok.
 
-In order to have the file browser up, we need to:
-  # install the *[http://drupal.org/project/rdf/ RDF module]* and the *[http://drupal.org/project/bitcache Bitcache module]* (Important, *don't download alpha-3 see (1)* !).
-  # in Drupal's interface, log in as an administrator go to Administer > Site building > Modules > File management: *enable the "Browser" feature*.
+Install the *[http://drupal.org/project/rdf/ RDF module]* and the *[http://drupal.org/project/bitcache Bitcache module]* (Important, *don't download alpha-3 see (1)* !).
 
 (1) Either download the alpha2 version (from december 2008) or the last development version (from 14 january 2009 or later), but not alpha-3 which is buggy and won't allow you to create any new piece of content ! Use [http://drupal.org/node/192590/release this link to be able to download more versions] of the Bitcache module.
 
+=== Configuration of the File browser view ===
+In order to have the file browser up, in Drupal's interface, *enable the "Browser" feature* in Administer > Site building > Modules > File management.
+
 *The File Browser exposes a block* which you can put you can put in a region. See the Enabling installed modules blocks below.
 
-== Getting a tree block of taxonomies into a side pane with the taxonomy_dhtml module==
-The [http://drupal.org/project/taxonomy_dhtml Taxonomy DHTML module which depends on the [http://drupal.org/project/dhtml_menu DHTML Menu module] exposes a block that shows the taxonomies tree with a limited or unlimited depth.
+== Taxonomy DHTML menu ==
+The [http://drupal.org/project/taxonomy_dhtml Taxonomy DHTML module] which depends on the [http://drupal.org/project/dhtml_menu DHTML Menu module] exposes a block that shows the taxonomies tree with a limited or unlimited depth.
 
 The DHTML component of both modules allows the generated menus/trees to be expanded on click without forcing a full page reload and also give nice animation effects when menu items are expanded/collapsed.
 
+=== Installation ===
+The taxonomy_dhtml module just requires the dhtml_menu module to be installed. See the above installing modules section if you don't know how to install them.
+
+=== Configuration ===
 Once the two above-mentioned modules are installed and enabled, configuration for the Taxonomy DHTML module can be done in Administer > Site configuration > Taxonomy DHTML. There, it is important to check the "Expose block" option and why not to increase the Depth to some bigger number or "All" so as to be able to see the full tree. You will likely need to move the newly exposed block from this Taxonomy DHTML module to a page region thanks to the Blocks administration view (see the "Enabling installed modules blocks" below).
 
-== Enabling installed modules blocks ==
+== Drupal blocks - enabling blocks for installed modules ==
 
 In Drupal, this is possible to let modules or information be located on left,right,top and bottom (footer) regions/panes/sidebars of all or specific pages. The sort of widgets/information that modules can put in these regions on request is called blocks.
 
