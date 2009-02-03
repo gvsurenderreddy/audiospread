@@ -5,7 +5,8 @@
 <wiki:toc max_depth="2" />
 
 ---------
-== 0.01 Drupal, Asterisk, content creation Discovery ==
+= 0.01 discovery, development tools, first setups =
+== 0.01a Drupal, Asterisk, content creation Discovery ==
 *Drupal team*
   * ~~mySql database for drupal~~ *DONE*
   * ~~Drupal installed~~ *DONE*
@@ -47,3 +48,11 @@ _*Note: we do no MySQL versioning. Mysql will have to be used remotely
     * SSH tunneling through ECE's gandalf
   * Testing team and other development teams are ready (sip+softphone/drupal account created).
   * Rational Unified Process & Agile Development methodologies have been reconciled and formalised, making the whole aware of those and how they are to be applied during the project.
+
+= 0.02 1st prototype preparation (for friday jan, 13th) =
+*We have to deliver this prototype on that date along with STBv2 and DA*
+== Asterisk prototype ==
+TODO
+
+== Drupal prototype ==
+TODO
