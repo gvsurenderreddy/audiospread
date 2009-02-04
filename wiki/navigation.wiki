@@ -3,6 +3,7 @@
 *!AudioSpread Project Management*
   * [DevelopmentRoadmap Development Roadmap]
   * [ProjectManagementMethodology Project Management Methodology]
+  * [ProjectCycles Agile Cycles]
 _*Team Responsibilities*_
   * [WhoDoesWhatPPEResps PPE responsibilities]
   * [WhoDoesWhatTechDevResps Development responsibilities]
