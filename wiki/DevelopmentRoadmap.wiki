@@ -52,7 +52,12 @@ _*Note: we do no MySQL versioning. Mysql will have to be used remotely
 = 0.02 First prototype preparation (for friday jan, 13th) =
 *We have to deliver this prototype on that date along with STBv2 and DA*
 == Asterisk prototype ==
-TODO
+Code an extension.conf file which will enable an user to :
+  # listen to a welcome menu (sentence pronounced by a voice)
+  # listen to the voice enumerating the different programs available
+  # navigate through the different programs(music for example)
+  # read a program and use controls : pause/rewind/forward/previous/next
+  # exit to welcome menu
 
 == Drupal prototype ==
 TODO
