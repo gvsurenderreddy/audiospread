@@ -17,9 +17,9 @@ _*Team Responsibilities*_
 
 _*Collaboration*_
 
-  * [DevelopmentToolsDeployment Live svn + web & asterisk overview ]
-  * [SetupSVNSSHLAAMP How we setup svn+ssh/asterisk/apache server]
-  * [SSHTunneling SSH multi-tunneling for svn+ssh,http,asterisk]
+  * [DevelopmentToolsDeployment Making svn update server applications config live]
+  * [SetupSVNSSHLAAMP Installing and setting up svn+ssh/asterisk/apache servers]
+  * [SSHTunneling SSH multi-tunneling for svn+ssh,http,asterisk(SIP)]
 
 _*General*_
   * [IDECodingTools Coding tools / IDEs]
