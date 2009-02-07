@@ -1,17 +1,29 @@
 #summary One-sentence summary of this page.
 #labels Featured
-
+This wiki presents the way that our project should advance. 
 = Introduction =
 
-Add your content here.
+Each developer of each team: Drupal and Asterisk should see the project as a number of tasks
+which have to correspond to *users stories*. 
+
+For example:
+"as a [some role], I want to [do some simple action]"
+
+Each user story corresponds to one or several *developing tasks*.
+
+Finally, each task has a *developing period*(hours).
+
+*Bugs* can occur and must be resolved in an estimated number of hours.
 
 
-= Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
 
-|| table || cells ||
-|| table || cells ||
+
+= Cycle =
+
+*Iterations of 10 days with the available number of workable hours according to our schedule.*
+
+*A number of developers is assigned to this iteration*-> see tickets sent by each of the two teams managers (Wenyi: Drupal; me: Asterisk)to their developers.
+
+  
+*Inserting in each iteration user storie's tasks or bugs to resolve.* 
