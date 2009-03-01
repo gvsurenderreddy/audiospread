@@ -11,6 +11,9 @@ The project is to release the following software-related deliverables likely at 
 
 = Details =
 
+== Project-specific Debian packages ==
+  * Debian packages could be created with a graphical application [http://code.google.com/p/debianpackagemaker/ debianpackagemaker] or just from shell with the usual Debian tools with help from the web and IRC.
+
 == A Live & Installable Custom Distribution CD ==
 === From an Ubuntu installation/distribution ===
   * To create a new CD with custom packages and settings (ie. change background image settings, logos, skins...): [http://reconstructor.aperantis.com/index.php?option=com_frontpage&Itemid=1 Reconstructor, a python GUI helping to Build and customize graphically an Ubuntu-based library from any Ubuntu CD].
