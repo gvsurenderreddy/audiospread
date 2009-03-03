@@ -8,56 +8,57 @@
 = 0.01 discovery, development tools, first setups =
 == 0.01a Drupal, Asterisk, content creation Discovery ==
 *Drupal team*
-  * ~~mySql database for drupal~~ *DONE*
+  * ~~MySQL database for Drupal~~ *DONE*
   * ~~Drupal installed~~ *DONE*
   * ~~CCK,bitcache,rdf,views module installed~~ *DONE*
 
 *Asterisk team*
-  * [http://code.google.com/p/audiospread/issues/detail?id=7 Install Asterisk + an SIP softphone, call a local Asterisk sever over SIP with the softphone.]
+  * ~~[http://code.google.com/p/audiospread/issues/detail?id=7 Install Asterisk + an SIP softphone, call a local Asterisk sever over SIP with the softphone.]~~ *DONE*
 *Content creation team*
-  * [http://code.google.com/p/audiospread/issues/detail?id=8 find a practical workflow to record/get & convert any audio files into mp3.]
+  * ~~[http://code.google.com/p/audiospread/issues/detail?id=8 find a practical workflow to record/get & convert any audio files into mp3.]~~ *DONE*
 
 ---------
 == 0.01b Server is ready for development (Live SVN+Asterisk+Drupal) ==
-Write documentation for the following steps ? _*Started, still to rethink and TOCONTINUE*_
 On our main server at rue de Grenelle (JBTV):
   * ~~LAMP stack installed (Ubuntu)~~ *DONE*
-  * network-specific requests made to ECE admin:
+  * ~~network-specific requests made to ECE admin:~~ *SKIPPED*
     * ~~we have our own Ethernet plug hole & fixed IP~~ *DONE*
     * ~~SSH possible from within local area network~~ *DONE*
     * ~~SSH possible from outside~~ *DONE*
-    * ~~Internews has a custom ECE unix account (can be delayed...)~~ *SKIPPED*, see following task
-    * create tunneler application for windows & linux that ships with binary-hidden authentication login & password. Tunneling for ssh,http,asterisk,mysql _*STARTED*_ *Customer version to do.*
-  * _user accounts = same accounts used for committing_ _*PARTLY DONE*_ (working, missing Intracorp's logins)
+    * ~~create tunneler application for windows & linux that ships with binary-hidden authentication login & password. Tunneling for ssh,http,asterisk,mysql~~ *DONE*
+  * ~~user accounts = same accounts used for committing~~ *DONE*
   * ~~LAMP~~*DONE* + Drupal installed
   * ~~Asterisk installed~~ *DONE*
   * ~~Live SVN for Asterisk files (config & sounds)~~ *DONE*
   * ~~Live SVN for Drupal&Apache's files~~ *DONE*
-  * Live SVN for Intracorp
-_*Note: we do no MySQL versioning. Mysql will have to be used remotely
-  * SVN syncing from server towards Google Code repo (_*may be skipped for project time, though it is much feasible*_)
-  * Asterisk can be called from local area network and from outside with a softphone (_*tested on personal machine, not server*_).
+  * ~~Live SVN for Intracorp~~ *DONE*
+_*Note:* we do no MySQL versioning. Mysql will have to be used remotely
+  * ~~SVN syncing from server towards Google Code repo~~ *SKIPPED*
+  * ~~Asterisk can be called from local area network and from outside with a softphone.~~ *DONE* with zoiper for IAX2.
 
-----
-== 0.01c teams ready to develop ==
+
+---------------
+= 0.02 First prototype preparation (for friday jan, 13th) = *DONE*
+*We have to deliver this prototype on that date along with STBv2 and DA*
+== Asterisk prototype ==
+~~Code an extensions.conf file which will enable an user to :~~ *DONE*
+  # ~~listen to a welcome menu (sentence pronounced by a voice)~~ *DONE*
+  # ~~listen to the voice enumerating the different programs available~~ *DONE*
+  # ~~navigate through the different programs(music for example)~~ *DONE*
+  # ~~read a program and use controls : pause/rewind/forward/previous/next~~ *DONE*
+  # ~~exit to welcome menu~~ *DONE*
+
+== Drupal prototype ==
+~~details skipped~~ *DONE*
+
+-------------
+== 0.03 All module teams ready to develop & test ==
+
   * Roadmap has some first steps/tickets for development that can be started.
   * Everyone knows how to work with:
     * the roadmap which contains tasks for a long time,
     * svn update, commit, conflicts, (branch & tags,)
     * code reviews & requests for reviews (while commit messages). See [http://code.google.com/p/support/wiki/CodeReviews here].
-    * SSH tunneling through ECE's gandalf
-  * Testing team and other development teams are ready (sip+softphone/drupal account created).
-  * Rational Unified Process & Agile Development methodologies have been reconciled and formalised, making the whole aware of those and how they are to be applied during the project.
----------------
-= 0.02 First prototype preparation (for friday jan, 13th) =
-*We have to deliver this prototype on that date along with STBv2 and DA*
-== Asterisk prototype ==
-Code an extension.conf file which will enable an user to :
-  # listen to a welcome menu (sentence pronounced by a voice)
-  # listen to the voice enumerating the different programs available
-  # navigate through the different programs(music for example)
-  # read a program and use controls : pause/rewind/forward/previous/next
-  # exit to welcome menu
-
-== Drupal prototype ==
-TODO
+    * SSH tunneling through ECE's gandalf *TODO Asterisk team*
+  * Testing team and other development teams are ready (SIP+Softphone/Drupal account created).
+  * Team knows how to follow agile development cycles.
