@@ -62,3 +62,63 @@ _*Note:* we do no MySQL versioning. Mysql will have to be used remotely
     * SSH tunneling through ECE's gandalf *TODO Asterisk team*
   * Testing team and other development teams are ready (SIP+Softphone/Drupal account created).
   * Team knows how to follow agile development cycles.
+
+
+Cycle(formerly Milestone) 0.04
+(this will go onto Tasksboard (former name = development roadmap) (something like this) when well established and in the Issue tracker with 1 ticket = 1 issue)
+
+< Drupal >
+D.a. actors can manage content (it's one of the user goals)
+D.a.1. as an anonymous,user,contributor,publisher,editor I can see, browse and add/delete programs and categories to a content tree (it's a kind of use case/user story to be fulfilled by the system)
+
+Drupal team, see if you should have more or less work. Note there's no business manager work below.
+if you focus on content management for now (this breaks teams..) a TODO can be to have programs' audio files really playable online (no full download) or to see how future deployment will have to be done with pattern module.
+
+Tickets (for use case D.a.1., to be done during the cycle)
+D.a.1.1. install outline module. done exists new version now (do you want install the newer dev release + keep the outline.module aside for inspiration because jonathan's modified it a little ?)
+D.a.1.2. create an example tree out of the outline module's existing features (ok for now)
+D.a.1.2. outline tree is viewed at user-friendly location on page layout and is easily click-browsable by actors.
+D.a.1.3.1. PHP:a category node can only have certain types of children:
+- if it has no children yet:
+- a "add child program" button
+if category node is not already a sub-category:
+- a "add child category" button
+- if it has children:
+- if those children are categories:
+- a "add child category" button
+- else it has program categories:
+- a "add child program" button
+D.a.1.3.2. PHP: a category node cannot have any children
+D.a.1.3.3. category and program nodes can be removed
+D.a.1.4. permissions for above actions are set for each each role:anonymous,user,contributor,editor,publisher.
+
+Bugs (for use case D.a.1.)
+None for now.
+
+< Inter-servers >
+//sorry not really use-cases-based here
+I.a. audio files are synced between servers and in a user+asterisk-friendly format as soon as user contribute contents (user goal)
+I.a.1. after a caller records a file, store file locally + send that file into the Drupal "submissions" folder (use case)
+
+Tickets (for I.a.1.)
+I.a.1.1. sample extension for recording into the Asterisk's "submissions" magical folder with filename containing caller-id and username if known.
+I.a.1.2. magical Asterisk's "submissions" folder bi-directional syncs with Drupal's "submissions" folder
+I.a.1.3. Drupal cron-checks "submissions" folder and adds/removes nodes to reflect folder in Drupal DB/ Drupal's interface "submissions" section
+//that's ok for a cycle
+
+Bugs (for I.a.1.)
+None for now.
+
+
+Asterisk
+up to Asterisk team to decide. Things to do can be: work on asterisk realtime understanding, and other thing: continue extensions.conf to add bookmarking(requires db, for later maybe), help info and content submission.
+You'll want Elie to record new stuff or not maybe.
+
+A.a. Scenario: Asterisk realtime setup
+A.a.1. Content can be browsed from MySQL database thanks to Asterisk realtime for extensions.conf
+A.a.2. Asterisk SOAP api full installation
+A.a.3. PHPMyAdmin Tests of user+extensions db from Asterisk SOAP api setup
+A.a.4. User of Asterisk SOAP api from a standalone SOAP client.
+
+Bugs
+None for now.
