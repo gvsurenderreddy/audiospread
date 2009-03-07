@@ -75,9 +75,9 @@ _*Note:* we do no MySQL versioning. Mysql will have to be used remotely
 === Tickets===
   * *D.a.1.1.* install outline module. *DONE* 
 _There is a new version now (do you want install the newer dev release + keep the outline.module aside for inspiration because jonathan's modified it a little ?)_
-  * *D.a.1.2.1.* create an example tree out of the outline module's existing features (ok for now
+  * *D.a.1.2.1.* create an example tree out of the outline module's existing features (ok for now)
   * *D.a.1.2.2.* outline tree is viewed at user-friendly location on page layout and is easily click-browsable by actors.
-  * *D.a.1.3.1.* PHP:a category node can only have certain types of children:
+  * *D.a.1.3.1.* PHP:a category node can only have certain types of children depending on their level and the type of children they already have if any:
     * if it has no children yet:
       * have an "add child program" button
       * if category node is not already a sub-category/level-2-category:
@@ -87,8 +87,7 @@ _There is a new version now (do you want install the newer dev release + keep th
         * have an "add child category" button
       * else if those programs are programs:
         * have an "add child program" button
-  * *D.a.1.3.2.* PHP: a category node cannot have any children
-  * *D.a.1.3.3.* category and program nodes can be removed
+  * *D.a.1.3.2.* category and program nodes can be removed
   * *D.a.1.4.* permissions for above actions are set for each each role:anonymous,user,contributor,editor,publisher.
 
   * *D.b.1.* Install [http://drupal.org/project/flvmediaplayer JWPlayer] so as to be able to preview audio from the web interface (no full download).
@@ -104,9 +103,9 @@ _There is a new version now (do you want install the newer dev release + keep th
     * *I.a.1.* after a caller records a file, store file locally + send that file into the Drupal "submissions" folder (use case)
 
 ====Tickets====
-  * *I.a.1.1.* sample extension for recording into the Asterisk's "submissions" magical folder with filename containing caller-id and username if known.
+  * *I.a.1.1.* sample dialplan extension for recording into the Asterisk's "submissions" magical folder with filename containing caller-id and username if known.
   * *I.a.1.2.* magical Asterisk's "submissions" folder bi-directional syncs with Drupal's "submissions" folder
-  * *I.a.1.3.* Drupal cron-checks "submissions" folder and adds/removes nodes to reflect folder in Drupal DB/ Drupal's interface "submissions" section
+  * *I.a.1.3.* Drupal cron-checks "submissions" folder and adds/removes Drupal nodes to reflect folder in Drupal DB/ Drupal's interface "submissions" section
 
 ====Bugs====
   _None for now._
