@@ -1,4 +1,5 @@
 #summary The most important Google Docs used in our project.
+#labels Featured
 
 = The Project's Google Documents =
 
@@ -19,3 +20,4 @@ Work in progress documents for the STB. (spécification technique de besoins = r
 == DA WIP ==
 Work in progress documents for the DA. (dossier d'architecture = architecture document)
   * [http://code.google.com/p/audiospread/wiki/ArchitecturesSummary Architecture summary (wiki page for now)]
+  * [http://docs.google.com/Doc?id=dhvvn4p_0cf45m6ct The DA published Google Doc]
