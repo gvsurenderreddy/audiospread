@@ -150,15 +150,56 @@ WebDAV
 
 == SUMMARY OF STB ==
  during the STB, we analysis the requirement from the client,that's are:
-1. The user creates a program. 
-2. The administrator deletes a program.  
-3. The administrator download a program. 
-4. The administrator creates a category. 
-5. The administrator deletes a category. 
-6. The administrator moves a program. 
-7. The administrator move a category. 
-8. the publisher and editor can publish the program 
-9. the publisher and editor can publish the category. 
-10. The publisher and editor can unpublish the program 
-11. the publisher and editor can unpublish the category
-12. Every role can view the program 
+ CONTENT UPLOAD - CORE - DONE
+
+1. The admin roles can upload/create a program.
+
+  CONTENT MANAGEMENT - CORE - HALF DONE
+
+  1. The administrator deletes a program
+  2. The contributor/subscriber/editor/publisher download a program.
+  3. The editor/publisher creates a category.
+  4. The editor/publisher deletes a category.
+  5. The editor/publisher moves a program.
+  6. The editor/publisher move a category.
+  7. the editor/publisher can publish the program
+  8. the editor/publisher can publish the category.
+  9. The publisher and editor can unpublish the program
+  10. the editor/publisher can unpublish the category
+
+
+
+
+CONTENT DISPLAY - OPTIONAL - DONE
+
+ 12. Every role can view the content tree
+
+ 13. Every role can view the program description
+
+ 14. Every role can play the program on line.
+
+  BUSINESS MANAGEMENT -CORE - STATUS ?
+ 1.The visiter regists the drupal website
+ 2.The user changes their personal information
+ 3.The publisher views all users account
+ 4.The publisher assigns subscription type (standard/premium) to user
+
+
+
+  ASTERISK
+
+  CONTENT ACCESS - CORE
+  1. callers is recognized as standard/premium by caller id
+
+  CONTENT UPLOAD - CORE
+  2. submit audio by phone
+
+  CONTENT DISPLAY - CORE
+  3. call-in access to programs
+  4. call-back access to programs for premium users
+
+
+  INTER-SERVERS
+
+  PROGRAMS FROM DRUPAL => ASTERISK - CORE
+  1. Drupal uploaded & programs are copied onto asterisk
