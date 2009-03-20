@@ -148,4 +148,17 @@ WebDAV
 
 == END TODO LATER ==
 
-== Summary of STB==
+== SUMMARY OF STB ==
+ during the STB, we analysis the requirement from the client,that's are:
+1. The user creates a program. 
+2. The administrator deletes a program.  
+3. The administrator download a program. 
+4. The administrator creates a category. 
+5. The administrator deletes a category. 
+6. The administrator moves a program. 
+7. The administrator move a category. 
+8. the publisher and editor can publish the program 
+9. the publisher and editor can publish the category. 
+10. The publisher and editor can unpublish the program 
+11. the publisher and editor can unpublish the category
+12. Every role can view the program 
