@@ -1,205 +1,122 @@
 #summary The requirements specification.
 
-= Introduction =
+= Requirements specification summary =
+_The STB is an analysis of the customer's requirements._
 
-This page lists shortly though hopefully completely the needs of the AudioSpread solution.
-It should help :
-  * find technologies/applied designs to use to translate those requirements into code/solution
-  * write the roadmap with including its different milestones
+=Drupal=
+*Roles:*
 
+_*Admin roles*_
+  * (P)ublisher
+  * (E)ditor
+  * (C)ontributor
+_*Visitor roles*_
+  * (R)egistered visitor
+  * (A)nonymous visitor
 
-= Details =
-4.3. Operational requirements
-4.3.1. Environment
+==Content creation - CORE==
+  # Create a program & upload title & body mp3 files for it. (All admin roles)
+  # Create a category & upload category header & footer mp3 files for it. (All admin roles)
 
- 
-When operated and used by administrators and/or callers, the AudioSpread solution must meet several well-defined requirements related to its hardware and software environments.
+==Content management - CORE==
+  # Delete a program (EP)
+  # Create a category (EP)
+  # Deletes a category (EP)
+  # Move a program. (EP)
+  # Move a category. (EP)
+  # Un/publish the program. (EP)
+  # Un/publish the category. (EP)
 
-    4.3.1.1. Hardware environment
+==Content display - OPTIONAL==
+ # View the content tree (All)
+ # View the program description (All)
+ # Play the program on line (All)
+ # Download a program (All except A)
 
-    Server minimum specifications
+==Business management - CORE==
+ # The visiter sign up and then logs into the drupal website (All)
+ # Changes one's own personal information (All)
+ # View all users account (P)
+ # Assigns subscription type (standard/premium) to user (P)
 
-    The AudioSpread solution, considered as running on a Linux server, will on top of _x86 architecture_ computers because those are mainstream and will spare the development team from recompiling some Linux packages.
---------------------
-== ADDITION ==
-asterisk server and web server operations will likely be separate in two seperate locations (because this is what happens most of the time and it's cheaper).
+=ASTERISK=
+*Roles:*
 
-the asterisk server is mostly controlled by the web server while it can give some incoming call data to the latter.
+_*All use cases can be done by anonymous(=standard/default contract) and registered(=premium constract) callers. Except Content access>2. premium call back. for premium users only*_
 
-the asterisk server will be the server on which uploaded & recorded files are kept.
+==Content access - CORE==
+  # Callers is recognized as standard/premium by caller id.
+  # If caller is premium. Hangup(congestion) and call him back taking him to normal context so he does not pay.
 
-This means that :
+==Content upload - CORE==
+  # Submit audio by phone
 
-  * a phone recording through the asterisk server remains on the server but is signaled to the web server for info that some new recording exists.
+==Content display - CORE==
+  # Access to programs over phone
 
-  * an HTTP upload through the web server actually will send the uploaded files, temporarily stored on the server to the asterisk server in the end.
+=INTER-SERVERS=
+==Content tree from Drupal => Asterisk - CORE==
+  # On content tree change, the latter is _*copied*_ from Drupal to Asterisk
 
-=== we decide not to do any webDAV contrary to the emails we had before (trust Jonathan for that, or we'll imagine & implement that very much later if needed but not for STBv1)! ===
+==Submitted audio from Asterisk => Drupal - CORE==
+  # Phone-submitted audio is _*copied*_ from Asterisk to Drupal.
 
-in the end:
+==Call detail record (CDR) from Asterisk => Drupal - OPTIONAL==
+  # On caller hangup, send call duration&caller id/username from Asterisk to Drupal. (helpful for business manager's total call time per user).
 
-the web server contains the info on:
-  * what the categories are and how they are embedded into one another (remember: up to 2 levels of categories); what the programs are and how they are embedded into the categories.
-  * with a category = a string for a name, a link to a list of drupal roles of who has web read/write of the category's name & subcontent + another list of drupal roles of who(what kind of subscription, we could just create drupal roles which are useless on drupal side, but read/transmitted to the asterisk server...) has telephone listen access to the category's title + subcontent.
 
-== END ADDITION ==
--------------------
 
-    That server would not need to be located within a radio station's own premises. to have a _CPU_ of at of at least 1GHz and 256 Mo of _RAM_ so as to be able to handle at maximum of 10 simultaneous callers (as mentioned in part 4.1.) with less than 5 administrators connected to the web interface.
 
-     
-    Development solution plugging to network
 
-    During the project development, the server will only support _VOIP_ calls because it will plugged to a _LAN_ network through a usual Ethernet board. In such a deployment, the server will be callable through the use of _Softphone applications_ installed distinct computers, or with several such applications running a same distinct computer.
 
-     
-    Deployed solution plugging to network
 
-    When deployed in real life situations such as in developing countries radio stations, the server will likely be plugged to two landlines through a telephone board: one for handling Premium users calls and the other for handling unsubscribed users. It will be possible to call the server with any kind of landline and mobile phones. The Premium subscription option will allow callers geared with a mobile phone to just send _SMS_ to receive contents of a menu. If users with such a subscription miss a mobile phone, they'll be prompted on call-in with a proposal to be called back right away by the AudioSpread server so as to not pay any money in case communication costs are not shared but usually paid the by the calling person.
 
- 
+----------
+=Internews original full requirements/guidelines=
 
-    4.3.1.2. Software requirements
+_*CORE : is an essential part of the project; OPTIONAL : are important next steps to consider; EXTRA: something to research and report on, and possibly implement if you have extra time on your hands or someone from your team feels he can leverage a  significant expertise in this field.*_
 
-4.3.2. Operation
+  * Systems requirements :
+    * Hardware
+      * Desktop or Laptop computer as server with
+        * CORE: GSM modem for Laptop (for a mobile low cost configuration)
+        * OPTIONAL : Bluetooth compatible cellphone through chan_mobile drivers.
+          * EXTRA : Improve chan_mobile drivers’ audio quality for IVR (for instance with Nokia 6230i handsets and D-link DBT-120 Bluetooth dongles)
 
-== TODO ==
-== Drupal Side ==
-=== Business Manager Module ===
+          * EXTRA : Improve chan_mobile drivers SMS handling to quality level of Junghanns GSM drivers. (One should be able to send SMS via the asterisk 'spool" mechanism and receive them via the AMI event model.)
+        * OPTIONAL : Junghanns GSM PCI card driver for Desktop
 
+    * Systems
+      * CORE : Linux (Debian preferably)
+      * EXTRA: Look at porting all functionalities to !AsteriskWin32
 
-=== Content Manager Module ===
-This module shows to the user to two levels of categories containing audio programs in a scheme similar to the folders and file schema common to normal computer systems. This schema being shown, does not mean that the internal/backend structure of those files & categories are disposed the same way on disk.
-Note for info: [http://drupal.org/project/filebrowser as said in the filebrowser module] says nice things about the possibility to add metadata to folders & files:
-* "Allows site administrators to expose a particular file system folder and all of its subfolders with a fancy FTP-like interface to site visitors. File metainformation (via descript.ion and files.bss) is supported. The module also allows these metafiles to store special content, which can be parsed with a callback. If no callback is specified in the file, only the description will be fetched."
+    * Application
+      * CORE : Asterisk.
+        * Left to INTERSPREAD to decide and justify which version/distribution of asterisk to target.
 
-* IMCE drupal module also looks interesting:
-http://webscripts.softpedia.com/screenshots/IMCE-26402.png
-http://drupal.org/project/imce
-
-there one can:
-categories:
-  * select one or more categories at once
-  * make a category to have state unpublished or not published, and in addition to that a property telling for each category which kinds of phone subscribers can access to the concerned category when published.
-  * create/delete categories (with their subcontent else, refuse to delete, subcontent has to be moved elsewhere first). Note, it's possible
-  * move selected categories inside others (with their recursive subcontent to be practical)
-  * a category data structure is as follows:
-    # a category id/name (string, corresponds to exact folder name on hard drive)
-    # a category text name displayed which is the main representation to display the category on the web.
-    # a category sound file name (to be said in the menu) same principle as sound file title for programs
-    # details text field (for web only)
-    # un/published boolean
-
-programs:
-  * upload programs over http (*NO WEBDAV FOR NOW!*)
-  * uploaded & phone-recorded programs are placed upon creation to a category or place named "Temporary". User has to move them from there to a category for them to be published.
-  * each file where it is has an published/unpublished state changeable by user making it visible or not over phone.
-  * a program's data structure is as follows:
-    # a program ID (a string, correspond to exact program ".info" file name)
-    # program text title
-    # program audio title file (ie a audio file saying "A story of white bears" so it can be concatenated in the menus with "type" "N" "to hear" "A story of white bears".
-    # program text summary
-    # program audio summary (can be played when user asks to know more about the program while not playing it yet)
-    # the program audio file itself
-    # un/published boolean
-
-web app representation <====> real hard drive presence
-1 program <=> 1 .info file accompanied or not with audio files
-1 category <=> 1 folder
-
-=== Content Manager Module ===
-TODO someone ?
-
-== Telephone ==
-TODO jonathan & xavier
-
-== END TODO ==
-4.4. Interfaces with the extern actors of the system
-4.4.1. Man-Machine interface
-
-    Your browser may not support display of this image.4.4.1.1. Caller mobile interface
-
-    The caller will be able to choose the programs he wants to listen thanks to his mobile keypad. The IVR technology will be used. Interactive voice response, or IVR, is a technology that allows a computer to detect voice and keypad inputs. That way the caller will choose the different category by pressing the different numbers.
-
-    For example:
-
-    IVR: “If you want to record a message press 1, if you want to listen a program press 2”
-
-    CALLER: press 1.
-
-    IVR:”Agricultural news press 1, economical news press 2, sports news press 3…”
-
-    …
-
-    Your browser may not support display of this image.4.4.1.2. Administrator computer interface
-
-    The administrator will be able to manage the server database thanks to a basic computer interface.
-
-4.4.2. Softwares interfaces
-== TODO LATER ? ==
-    4.4.2.1. Internet browser 
-
-    The administrator computer interface will work thanks to an internet browser as Microsoft Internet Explorer, Mozilla, Opera. He will access to the manage webpage with a HTTPS protocol. This protocol allows an encrypted and secure interface.
-
-    Your browser may not support display of this image.4.4.2.2. Softphone
-
-4.4.3. Files or data base
-WebDAV
-
-== END TODO LATER ==
-
-== SUMMARY OF STB ==
- during the STB, we analysis the requirement from the client,that's are:
- CONTENT UPLOAD - CORE - DONE
-
-1. The admin roles can upload/create a program.
-
-  CONTENT MANAGEMENT - CORE - HALF DONE
-
-  1. The administrator deletes a program
-  2. The contributor/subscriber/editor/publisher download a program.
-  3. The editor/publisher creates a category.
-  4. The editor/publisher deletes a category.
-  5. The editor/publisher moves a program.
-  6. The editor/publisher move a category.
-  7. the editor/publisher can publish the program
-  8. the editor/publisher can publish the category.
-  9. The publisher and editor can unpublish the program
-  10. the editor/publisher can unpublish the category
-
-
-
-
-CONTENT DISPLAY - OPTIONAL - DONE
-
- 12. Every role can view the content tree
-
- 13. Every role can view the program description
-
- 14. Every role can play the program on line.
-
-  BUSINESS MANAGEMENT -CORE - STATUS ?
- 1.The visiter regists the drupal website
- 2.The user changes their personal information
- 3.The publisher views all users account
- 4.The publisher assigns subscription type (standard/premium) to user
-
-
-
-  ASTERISK
-
-  CONTENT ACCESS - CORE
-  1. callers is recognized as standard/premium by caller id
-
-  CONTENT UPLOAD - CORE
-  2. submit audio by phone
-
-  CONTENT DISPLAY - CORE
-  3. call-in access to programs
-  4. call-back access to programs for premium users
-
-
-  INTER-SERVERS
-
-  PROGRAMS FROM DRUPAL => ASTERISK - CORE
-  1. Drupal uploaded & programs are copied onto asterisk
+  * Functional requirements
+    * End user
+      * CORE : Call in access to programs
+        * CORE : IVR – Voice menu access to directory tree of content (max 2 top level categories, then access to content titles “For new techniques in cotton cultivation, press 1, for fertilizer today press 2...”.
+        * OPTIONAL : predefined content codes (acquired through directory request below)
+      * OPTIONAL : Audio content directory request (send SMS : AGRICULTURE, receive title of content with keyword and predefined content code).
+      * CORE : Call back access to programs for premium users (send SMS : AGRICULTURE, call back “For new techniques in cotton cultivation, press 1, for fertilizer today press 2...”)
+
+    * Content Manager
+      * CORE : upload of programs to the server
+        * CORE : Through Drupal node attachments (HTTP Upload)
+        * OPTIONAL : through
+          * Network shares (Samba)
+          * FTP/SFTP
+          * WebDAV
+          * HTTP Upload
+      * CORE : submitting audio by phone (look at existing Drupal module “Asterisk Integration”
+        * CORE : Management of content directory
+          * CORE : Web based management through Drupal and content classification through  Taxonomies
+          * OPTIONAL : Through a file system directory structure
+
+    * Business Manager
+      * CORE : Manage user’s accounts (free, premium i.e. subscription based, pay-as-you-go i.e. access through overtaxed number).
+    * EXTRA
+      * Look at Frontline SMS and try to replicate its functionalities.
+      * Look at integration with other CMS (SPIP, Joomla, Wordpress) and DMS (!KnowledgeTree, DSpace...)
