@@ -3,6 +3,72 @@
 = Requirements specification summary =
 _The STB is an analysis of the customer's requirements._
 
+=Content types=
+==Phone menus configuration==
+*role: publisher* can edit this content type
+  * call start welcome message:
+    * for standard callers: audio file
+    * for premium callers: audio file
+  * home menu welcome message:
+  * home menu categories references: node references to chooseable categories (default is [Help category, Audio archives category]).
+  * record menu title: audio file
+  * record menu welcome message: audio file
+  * record menu ask for title message: audio file
+  * record menu ask for actual message: audio file
+  * record menu ok message: audio file
+  * phone key bindings: choose character in 0-9,#,* for each of play,pause,stop,rewind,go up (may be skipped), ok
+
+*Phone example*
+{{{
+[Call start]
+  * <- here, premium users get hanged-up(congestion) and are called back into this position of display ->
+  * (call start welcome message):
+    * "welcome on crocodile radio" (if standard caller)
+    * "welcome premium user on crocodile radio" (if premium caller)
+
+[Home]
+  * home message: "Home menu, please choose a section by typing the numbers with your phone's keys"
+  * home menu categories      : "1 Listen to audio archives. 2 Listen to help."
+  * record menu title         : "3(=2+1) Record a comment"
+  * <- waits for user to type extension ->
+
+[Record menu]
+  * record menu title           : "Record a comment"
+  * record menu welcome message : "this will allow you to put a comment that our radio staff may or not publish into the archives. Press # or wait a few seconds when you're finished recording something."
+  * record menu ask for title   : "please say a title for your comment"
+  * record menu ask for body    : "now you can say your full comment"
+  * record menu ok message      : "thanks for your comment which has been recorded successfully. You maybe called back by our staff in the coming days."
+
+[Audio archives category]
+ (like a normal category)
+  * category title             : "Crocodile radio audio archive"
+  * items listing              : "1 why crocodile like hot dogs ?. 2 crocodile toothcare..."
+  * <- waits for user to type extension ->
+(note: this tree is the famous "content tree" and is 2 levels deep)
+
+[Help archives category]
+ (like a normal category)
+  * category title             : "Here's some help on using the system"
+  * items listing              : "1 navigating accross menus ?. 2 playback keys"
+  * <- waits for user to type extension ->
+(note: this tree is 1 level and is 1 category containing only programs)
+
+}}}
+
+==Audio program==
+  * title: text
+  * description: text
+  * audio title: audio file
+  * audio body: audio file
+*children:* none, *parent:" a category
+
+==Audio category==
+  * title: text
+  * description: text
+  * audio title: audio file
+*children:* programs xor categories, *parent:" a category
+
+---------------
 =Drupal=
 *Roles:*
 
@@ -38,7 +104,7 @@ _*Visitor roles*_
  # Changes one's own personal information (All)
  # View all users account (P)
  # Assigns subscription type (standard/premium) to user (P)
-
+-----------
 =ASTERISK=
 *Roles:*
 
@@ -53,7 +119,7 @@ _*All use cases can be done by anonymous(=standard/default contract) and registe
 
 ==Content display - CORE==
   # Access to programs over phone
-
+---------------
 =INTER-SERVERS=
 ==Content tree from Drupal => Asterisk - CORE==
   # On content tree change, the latter is _*copied*_ from Drupal to Asterisk
@@ -63,13 +129,6 @@ _*All use cases can be done by anonymous(=standard/default contract) and registe
 
 ==Call detail record (CDR) from Asterisk => Drupal - OPTIONAL==
   # On caller hangup, send call duration&caller id/username from Asterisk to Drupal. (helpful for business manager's total call time per user).
-
-
-
-
-
-
-
 
 ----------
 =Internews original full requirements/guidelines=
