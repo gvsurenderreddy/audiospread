@@ -60,13 +60,16 @@ _The STB is an analysis of the customer's requirements._
   * description: text
   * audio title: audio file
   * audio body: audio file
-*children:* none, *parent:" a category
+*children:* none, *parent:* a category
 
 ==Audio category==
   * title: text
   * description: text
   * audio title: audio file
-*children:* programs xor categories, *parent:" a category
+  * header: audio file
+  * footer: audio file
+
+*children:* 0 or more programs xor categories, *parent:* a category
 
 ---------------
 =Drupal=
