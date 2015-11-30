@@ -1,0 +1,131 @@
+# Development Roadmap #
+
+
+
+
+---
+
+# 0.01 discovery, development tools, first setups #
+## 0.01a Drupal, Asterisk, content creation Discovery ##
+**Drupal team**
+  * ~~MySQL database for Drupal~~ **DONE**
+  * ~~Drupal installed~~ **DONE**
+  * ~~CCK,bitcache,rdf,views module installed~~ **DONE**
+
+**Asterisk team**
+  * ~~[Install Asterisk + an SIP softphone, call a local Asterisk sever over SIP with the softphone.](http://code.google.com/p/audiospread/issues/detail?id=7)~~ **DONE**
+**Content creation team**
+  * ~~[find a practical workflow to record/get & convert any audio files into mp3.](http://code.google.com/p/audiospread/issues/detail?id=8)~~ **DONE**
+
+
+---
+
+## 0.01b Server is ready for development (Live SVN+Asterisk+Drupal) ##
+On our main server at rue de Grenelle (JBTV):
+  * ~~LAMP stack installed (Ubuntu)~~ **DONE**
+  * ~~network-specific requests made to ECE admin:~~ **SKIPPED**
+    * ~~we have our own Ethernet plug hole & fixed IP~~ **DONE**
+    * ~~SSH possible from within local area network~~ **DONE**
+    * ~~SSH possible from outside~~ **DONE**
+    * ~~create tunneler application for windows & linux that ships with binary-hidden authentication login & password. Tunneling for ssh,http,asterisk,mysql~~ **DONE**
+  * ~~user accounts = same accounts used for committing~~ **DONE**
+  * ~~LAMP~~**DONE** + Drupal installed
+  * ~~Asterisk installed~~ **DONE**
+  * ~~Live SVN for Asterisk files (config & sounds)~~ **DONE**
+  * ~~Live SVN for Drupal&Apache's files~~ **DONE**
+  * ~~Live SVN for Intracorp~~ **DONE**
+_**Note:** we do no MySQL versioning. Mysql will have to be used remotely
+  * ~~SVN syncing from server towards Google Code repo~~ **SKIPPED**
+  * ~~Asterisk can be called from local area network and from outside with a softphone.~~ **DONE** with zoiper for IAX2._
+
+
+
+---
+
+= 0.02 First prototype preparation (for friday jan, 13th) = **DONE**
+**We have to deliver this prototype on that date along with STBv2 and DA**
+## Asterisk prototype ##
+~~Code an extensions.conf file which will enable an user to :~~ **DONE**
+  1. ~~listen to a welcome menu (sentence pronounced by a voice)~~ **DONE**
+  1. ~~listen to the voice enumerating the different programs available~~ **DONE**
+  1. ~~navigate through the different programs(music for example)~~ **DONE**
+  1. ~~read a program and use controls : pause/rewind/forward/previous/next~~ **DONE**
+  1. ~~exit to welcome menu~~ **DONE**
+
+## Drupal prototype ##
+~~details skipped~~ **DONE**
+
+
+---
+
+## 0.03 All module teams ready to develop & test ##
+
+  * Roadmap has some first steps/tickets for development that can be started.
+  * Everyone knows how to work with:
+    * the roadmap which contains tasks for a long time,
+    * svn update, commit, conflicts, (branch & tags,)
+    * code reviews & requests for reviews (while commit messages). See [here](http://code.google.com/p/support/wiki/CodeReviews).
+    * SSH tunneling through ECE's gandalf **TODO Asterisk team**
+  * Testing team and other development teams are ready (SIP+Softphone/Drupal account created).
+  * Team knows how to follow agile development cycles.
+
+
+---
+
+# Development Cycle 0.04 - Friday March 6th - Wednesday March 11th 2009 #
+## 0.04 Drupal - Outline module PHP tranformations+finishing touches ##
+### Scenarios/use cases ###
+  * **D.a.** actors can manage content
+    * **D.a.1.** as an anonymous,user,contributor,publisher,editor I can see, browse and add/delete programs and categories to a content tree
+  * **D.b.** actors can listen to content online.
+  * **D.c.** Drupal modules, interface and permissions cleanup.
+
+### Tickets ###
+> ~~D.a.1.1.**install outline module.**DONE~~_There is a new version now (do you want install the newer dev release + keep the outline.module aside for inspiration because jonathan's modified it a little ?)_~~
+>  **D.a.1.2.1.** create an example tree out of the outline module's existing features (ok for now)~~
+    * **D.a.1.2.2.** outline tree is viewed at user-friendly location on page layout and is easily click-browsable by actors.
+    * **D.a.1.3.1.** PHP:a category node can only have certain types of children depending on their level and the type of children they already have if any:
+      * if it has no children yet:
+        * have an "add child program" button
+        * if category node is not already a sub-category/level-2-category:
+          * have an "add child category" button
+      * if it has children:
+        * if those children are categories:
+          * have an "add child category" button
+        * else if those programs are programs:
+          * have an "add child program" button
+    * **D.a.1.3.2.** category and program nodes can be removed
+    * **D.a.1.4.** permissions for above actions are set for each each role:anonymous,user,contributor,editor,publisher.
+
+> **D.b.1.~~Install [JWPlayer](http://drupal.org/project/flvmediaplayer) so as to be able to preview audio from the web interface (no full download).~~**
+
+> **D.c.1.~~Useless modules are uninstalled. Useless content types are removed. The Drupal user interface and permissions for each role's user "contributor\_person","publisher\_person" etc... are coherent with what those users should be able to do.~~**
+
+### Bugs ###
+> Interface needs cleanup for more coherence, see D.c.1. above.
+
+## 0.04 Inter-servers - Interserver contributed files bidirectional sync ##
+#### Scenarios/use cases ####
+  * **I.a.** audio files are synced between servers and in a user+asterisk-friendly format as soon as user contribute contents (user goal)
+    * **I.a.1.** after a caller records a file, store file locally + send that file into the Drupal "submissions" folder (use case)
+
+#### Tickets ####
+  * **I.a.1.1.** sample dialplan extension for recording into the Asterisk's "submissions" magical folder with filename containing caller-id and username if known.
+  * **I.a.1.2.** magical Asterisk's "submissions" folder bi-directional syncs with Drupal's "submissions" folder
+  * **I.a.1.3.** Drupal cron-checks "submissions" folder and adds/removes Drupal nodes to reflect folder in Drupal DB/ Drupal's interface "submissions" section
+
+#### Bugs ####
+> _None for now._
+
+
+## 0.04 Asterisk - Asterisk realtime ##
+#### Scenarios/use cases ####
+  * **A.a.** "Scenario": Asterisk realtime is setup
+
+#### Tickets ####
+  * **A.a.1.** Content can be browsed from MySQL database thanks to Asterisk realtime for extensions.conf
+  * **A.a.2.** Asterisk SOAP api full installation
+  * **A.a.3.** have Asterisk realtime work again for extensions + again this time for users.
+
+#### Bugs ####
+> _None for now._

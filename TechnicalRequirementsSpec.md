@@ -1,0 +1,190 @@
+# Requirements specification summary #
+_The STB is an analysis of the customer's requirements._
+
+# Content types #
+## Phone menus configuration ##
+**role: publisher** can edit this content type
+  * call start welcome message:
+    * for standard callers: audio file
+    * for premium callers: audio file
+  * home menu welcome message:
+  * home menu categories references: node references to chooseable categories (default is [category, Audio archives category](Help.md)).
+  * record menu title: audio file
+  * record menu welcome message: audio file
+  * record menu ask for title message: audio file
+  * record menu ask for actual message: audio file
+  * record menu ok message: audio file
+  * phone key bindings: choose character in 0-9,#,**for each of play,pause,stop,rewind,go up (may be skipped), ok**
+
+**Phone example**
+```
+[Call start]
+  * <- here, premium users get hanged-up(congestion) and are called back into this position of display ->
+  * (call start welcome message):
+    * "welcome on crocodile radio" (if standard caller)
+    * "welcome premium user on crocodile radio" (if premium caller)
+
+[Home]
+  * home message: "Home menu, please choose a section by typing the numbers with your phone's keys"
+  * home menu categories      : "1 Listen to audio archives. 2 Listen to help."
+  * record menu title         : "3(=2+1) Record a comment"
+  * <- waits for user to type extension ->
+
+[Record menu]
+  * record menu title           : "Record a comment"
+  * record menu welcome message : "this will allow you to put a comment that our radio staff may or not publish into the archives. Press # or wait a few seconds when you're finished recording something."
+  * record menu ask for title   : "please say a title for your comment"
+  * record menu ask for body    : "now you can say your full comment"
+  * record menu ok message      : "thanks for your comment which has been recorded successfully. You maybe called back by our staff in the coming days."
+
+[Audio archives category]
+ (like a normal category)
+  * category title             : "Crocodile radio audio archive"
+  * items listing              : "1 why crocodile like hot dogs ?. 2 crocodile toothcare..."
+  * <- waits for user to type extension ->
+(note: this tree is the famous "content tree" and is 2 levels deep)
+
+[Help archives category]
+ (like a normal category)
+  * category title             : "Here's some help on using the system"
+  * items listing              : "1 navigating accross menus ?. 2 playback keys"
+  * <- waits for user to type extension ->
+(note: this tree is 1 level and is 1 category containing only programs)
+
+```
+
+## Audio program ##
+  * title: text
+  * description: text
+  * audio title: audio file
+  * audio body: audio file
+**children:** none, **parent:** a category
+
+## Audio category ##
+  * title: text
+  * description: text
+  * audio title: audio file
+  * header: audio file
+  * footer: audio file
+
+**children:** 0 or more programs xor categories, **parent:** a category
+
+
+---
+
+# Drupal #
+**Roles:**
+
+_**Admin roles**_
+  * (P)ublisher
+  * (E)ditor
+  * (C)ontributor
+_**Visitor roles**_
+  * (R)egistered visitor
+  * (A)nonymous visitor
+
+## Content creation - CORE ##
+  1. Create a program & upload title & body mp3 files for it. (All admin roles)
+  1. Create a category & upload category header & footer mp3 files for it. (All admin roles)
+
+## Content management - CORE ##
+  1. Delete a program (EP)
+  1. Create a category (EP)
+  1. Deletes a category (EP)
+  1. Move a program. (EP)
+  1. Move a category. (EP)
+  1. Un/publish the program. (EP)
+  1. Un/publish the category. (EP)
+
+## Content display - OPTIONAL ##
+  1. View the content tree (All)
+  1. View the program description (All)
+  1. Play the program on line (All)
+  1. Download a program (All except A)
+
+## Business management - CORE ##
+  1. The visiter sign up and then logs into the drupal website (All)
+  1. Changes one's own personal information (All)
+  1. View all users account (P)
+  1. Assigns subscription type (standard/premium) to user (P)
+
+---
+
+# ASTERISK #
+**Roles:**
+
+_**All use cases can be done by anonymous(=standard/default contract) and registered(=premium constract) callers. Except Content access>2. premium call back. for premium users only**_
+
+## Content access - CORE ##
+  1. Callers is recognized as standard/premium by caller id.
+  1. If caller is premium. Hangup(congestion) and call him back taking him to normal context so he does not pay.
+
+## Content upload - CORE ##
+  1. Submit audio by phone
+
+## Content display - CORE ##
+  1. Access to programs over phone
+
+---
+
+# INTER-SERVERS #
+## Content tree from Drupal => Asterisk - CORE ##
+  1. On content tree change, the latter is _**copied**_ from Drupal to Asterisk
+
+## Submitted audio from Asterisk => Drupal - CORE ##
+  1. Phone-submitted audio is _**copied**_ from Asterisk to Drupal.
+
+## Call detail record (CDR) from Asterisk => Drupal - OPTIONAL ##
+  1. On caller hangup, send call duration&caller id/username from Asterisk to Drupal. (helpful for business manager's total call time per user).
+
+
+---
+
+# Internews original full requirements/guidelines #
+
+_**CORE : is an essential part of the project; OPTIONAL : are important next steps to consider; EXTRA: something to research and report on, and possibly implement if you have extra time on your hands or someone from your team feels he can leverage a  significant expertise in this field.**_
+
+  * Systems requirements :
+    * Hardware
+      * Desktop or Laptop computer as server with
+        * CORE: GSM modem for Laptop (for a mobile low cost configuration)
+        * OPTIONAL : Bluetooth compatible cellphone through chan\_mobile drivers.
+          * EXTRA : Improve chan\_mobile drivers’ audio quality for IVR (for instance with Nokia 6230i handsets and D-link DBT-120 Bluetooth dongles)
+
+  * EXTRA : Improve chan\_mobile drivers SMS handling to quality level of Junghanns GSM drivers. (One should be able to send SMS via the asterisk 'spool" mechanism and receive them via the AMI event model.)
+  * OPTIONAL : Junghanns GSM PCI card driver for Desktop
+
+  * Systems
+    * CORE : Linux (Debian preferably)
+    * EXTRA: Look at porting all functionalities to AsteriskWin32
+
+  * Application
+    * CORE : Asterisk.
+      * Left to INTERSPREAD to decide and justify which version/distribution of asterisk to target.
+
+  * Functional requirements
+    * End user
+      * CORE : Call in access to programs
+        * CORE : IVR – Voice menu access to directory tree of content (max 2 top level categories, then access to content titles “For new techniques in cotton cultivation, press 1, for fertilizer today press 2...”.
+        * OPTIONAL : predefined content codes (acquired through directory request below)
+      * OPTIONAL : Audio content directory request (send SMS : AGRICULTURE, receive title of content with keyword and predefined content code).
+      * CORE : Call back access to programs for premium users (send SMS : AGRICULTURE, call back “For new techniques in cotton cultivation, press 1, for fertilizer today press 2...”)
+
+  * Content Manager
+    * CORE : upload of programs to the server
+      * CORE : Through Drupal node attachments (HTTP Upload)
+      * OPTIONAL : through
+        * Network shares (Samba)
+        * FTP/SFTP
+        * WebDAV
+        * HTTP Upload
+    * CORE : submitting audio by phone (look at existing Drupal module “Asterisk Integration”
+      * CORE : Management of content directory
+        * CORE : Web based management through Drupal and content classification through  Taxonomies
+        * OPTIONAL : Through a file system directory structure
+
+  * Business Manager
+    * CORE : Manage user’s accounts (free, premium i.e. subscription based, pay-as-you-go i.e. access through overtaxed number).
+  * EXTRA
+    * Look at Frontline SMS and try to replicate its functionalities.
+    * Look at integration with other CMS (SPIP, Joomla, Wordpress) and DMS (KnowledgeTree, DSpace...)

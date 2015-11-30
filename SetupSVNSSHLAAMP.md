@@ -1,0 +1,128 @@
+# Setting up an SVN+SSH and Linux/Asterisk/Apache/Mysql/Php server #
+
+**Contents**
+
+
+## Introduction ##
+
+We hope through this documentation to give you more input on setting up [our development server](DevelopmentToolsDeployment.md).
+We have wanted this article to be simple and fast.
+
+A summary of the technologies involved are: **Ubuntu/Debian Linux, svn+ssh, Apache2+MySQL+PHP, Asterisk.**
+
+In our situation, we wanted to have both Apache2 and Asterisk's config files & contents folders to be versioned over svn.
+Thus everytime a change is committed onto the server, we can 1) restart the server if necessary, 2) interact with it over HTTP or VoIP (ie. browse the server's web pages / make a phone call to it).
+
+
+The ssh part in the svn+ssh was necessary because we had to cross our university proxy to reach our server locate in some room there and adding an ssh+ part to svn would make our connection flow through flawlessly instead of regular svn:// (on port 3690).
+Svn+ssh is special because it virtually logs you into a shell onto on the remote svn server and fetches/interacts with files from there.
+This implies that the users created for svn+ssh should be real users of the system (with linux/unix accounts created on the server).
+
+
+## Install SVN and the OpenSSH server if not present ##
+
+What we are doing here is actually what [Gunther Strube's post](http://svn.haxx.se/dev/archive-2004-03/0253.shtml) proposes for usual SVN+SSH setups except that you will have a bit more details here, the setup used here assumes that you don't want to put your respositories elsewhere than in an not-to-long absolute path like /svn/ to as to skip the redirection option `-r` to pass to svnserve.
+
+### Installing the OpenSSH server ###
+For our server we used an Ubuntu 8.04 regular CD which only installed the SSH client and not the server. You may not have to do this on Ubuntu Server for example.
+
+Test if the Openssh server is installed:
+
+`which sshd`
+
+should output something like:
+
+`/usr/sbin/sshd`
+
+
+You just need to install the Openssh server. Unless you use some graphical front-end to the apt system such as Synaptic Package Manager or Adept on KDE, you could type:
+
+`sudo apt-get install openssh-server`
+
+Once installed, see if it's running yet:
+
+`pstree | grep sshd`
+
+if you see ssh there, the ssh daemon (server) is running. Else start it:
+
+`sudo /etc/init.d/sshd start`
+
+Have try logging into your computer through ssh to test that, type your usual machine login password if prompted:
+
+`ssh localhost`
+
+**_note:_** another way to do that is to do ssh yourUserName@localhost ... Here it will use your current username (type `who` to know it).
+
+You have a new shell running which looks like your previous one though it is piped through an SSH connection. To get out of that shell, press _Ctrl+D_ once.
+
+### Installing SVN ###
+
+As before, check if svn is installed:
+`which svn`
+
+should output something like:
+
+`/usr/bin/svn`
+
+If not, install svn:
+`sudo apt-get install svn`, replacing svn by subversion if you have no result.
+
+And now we have all the needed software for an SVN+SSH server.
+
+## SVN+ssh repository creation quick steps ##
+
+**a)** create/decide on developer user accounts list to have read/write access to our repository, which we name `[developers]`
+
+**b)** create a `subversion` group and add the developer users to it.
+
+**d)** create the directory `/svn` that will contain your repositories. Give it permissions at least for `subversion` group read,write,execute and set group user id for folder (g+s):
+
+**or**
+
+if the directory to host our repositories already exists, make sure it that all the folders in the path have +x permissions for our `subversion` group or +x permissions for others:
+```
+chown :subversion /svn; chmod g+rws /svn
+```
+
+**e)** create repository `repo` within `/svn` with svnadmin create. Note that all the folders have their group in r-s (s is the interesting part), making so that every file/folder created within them belongs to group 'subversion'.
+
+Make everything group-editable:
+```
+find /svn/repo -type d -exec chmod g+rwx {} \;#allows adding files into folder
+find /svn/repo -type f -exec chmod g+rw {} \;#allows all files to be modified by group
+```
+
+**f)** setup `repo` to accept developers read/writes from the developers users from list [developers](developers.md):
+
+in file `/svn/repo`/conf/authz:
+> - in section `[groups]` add line:
+```
+someNewGroupName = the,developers,from,the,[developers],list
+```
+where someNewGroupName is a group name not necessarily the same as `subversion`
+> - add further down a section [/] under which you put the lines:
+```
+* = r
+@someNewGroupName = rw
+```
+> - (this statement in uncertain =>) so as to prevent you from writing to google code's imported wiki folder do, add a section:
+```
+[/wiki]
+#with nothing in it or with @someNewGroupName = r, TODO try with none
+```
+
+**g)** in order for svnserve,svnadmin and svnlook to preserve the user and group permissions when editing/creating files, create wrapper scripts which setup a umask 002 before executing the actual programs:
+for example for svnserve:
+> - rename /usr/bin/svnserve to /usr/bin/_svnserve
+> - create a file /usr/bin/serve containing script:
+```
+#!/bin/sh
+umask 002
+/usr/bin/_svnserve "$@"
+```
+**e)** if you want /virtual/root abstraction you can use the `-r /my/virtual/root/to/abstract` option here._
+
+**f)** we don't need to run svnserve as a daemon, it will be run in tunnel mode -t with possible -r virtual/root if you've defined that latter option in the wrapper script.
+
+## making live WWW and config files folder ##
+TODO

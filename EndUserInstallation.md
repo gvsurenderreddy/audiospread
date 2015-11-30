@@ -1,0 +1,48 @@
+# Installing AudioSpread on Ubuntu Linux #
+
+**Note:**This project has no release yet.
+
+At the end of the project we should have very user-friendly tools to install the AudioSpread server solution. For now here's some steps on installing the necessary packages on which AudioSpread relies, as well as a way to plug AudioSpread into those.
+
+To install the **AudioSpread server set**, a number of packages provided along with the Ubuntu distribution are necessary.
+
+Those are :
+### - A LAMP stack: ###
+You can type or select the respective packages with Synaptic (Ubuntu) or Adept (Kubuntu):
+|sudo apt-get install apache2 apache2-doc mysql-server php5 libapache2-mod-php5 php5-mysql phpmyadmin|
+|:---------------------------------------------------------------------------------------------------|
+
+OR paste this address into your Linux Web Browser:
+|apt://apache2,apache2-doc,mysql-server,php5,libapache2-mod-php5,php5-mysql,phpmyadmin|
+|:------------------------------------------------------------------------------------|
+
+OR install [XAMPP](http://doc.ubuntu-fr.org/xampp) which ships as a single Ubuntu package and should be simpler to use though making you download unneeded packages.
+
+### - Drupal (on top of a LAMP stack) ###
+#### Installing Drupal ####
+  1. Download drupal from [this page.](http://drupal.org/project/Drupal+project)
+  1. Extract your downloaded tar.gz archive of Drupal version 6.x and extract it into your Apache2 web folder (`/var/www/` usually). You may rename the containing folder from `drupal-6.*` to just `drupal`: type `mv drupal* drupal` if you just one drupal installation.
+  1. Add/enable the Rewrite module for Apache2 so as to have clean URLs later: `sudo a2enmod rewrite`.
+  1. Start your apache2 server or ensure it's started: `pstree | grep apache2` should yield something, if not do: `sudo /etc/init.d/apache2 start`.
+  1. Visit your Drupal installation's web page with a web browser: for example `http://localhost/drupal`. You see a Drupal page proposing you to install Drupal. Click on one of the proposed language installation links. You should on a page with a pink text box which speaks about settings and permissions.
+  1. Back in console, go to for example `/var/www/sites/default/` and do copy `settings.php.default` to `settings.php`.
+  1. Go the `/var/www/sites/` folder and run: `sudo chmod -R ug+w default` so as to give writing permissions to the default folder and it's contents. This will help drupal further its installation.
+  1. Go back in your bowser and refresh the page, the pink warning box should have disappeared.
+  1. Open up a mysql client you like or just the shell's mysql command, and connect to your MySQL server with (for a brand new/untouched LAMP install) username:root and password:root. For example: run `mysql -u root --password=root`. You should end up in a command line interface prompting you with `mysql>`.
+  1. Create a database for drupal. You can also create a user for this database. For example with these two commands (here `drupal_db` will be the database name and `drupal_user` a user for it with password `password`):
+```
+  CREATE DATABASE drupal_db;
+  GRANT ALL ON drupal_db.* TO drupal_user@localhost IDENTIFIED BY 'password';
+```
+> The above 2 MySQL lines comes from [this page](http://www.onlamp.com/pub/a/onlamp/2008/03/11/installing-and-using-drupal-a-primer.html).
+  1. . Exit the mysql client (for the command line client, use Ctrl+D or type exit).
+  1. . Back in your web browser, type in your database name (ie. `drupal_db`), database user name and password.
+  1. . The rest of the installation should be obvious. Beware though, you will be asked for a name for the site (the default proposal is `localhost`). Change that to something cool as this is what will show in very big at the left of your website on all pages.
+  1. . At some stage in the installation, you will create an administrator user and right after you will have an error which speaks about e-mailing. Don't worry, this is due to the fact that Drupal can't find a way to send emails from your machine because you don't have the right application for that.
+  1. . Later on, when new users register into your site, they should read that same kind of email messages. This is a bit more critical because the email they should receive contains a link to click on/visit so as to confirm their identity & wish to register, before giving them log in access to the site. For demo/development drupal installation this is not a problem if you know when users are created (ie. someone tells it to you, you see it in the menus... or you're the one actually creating those new accounts) and you have an website administrator account. Log into that administrater account you have and go to `Administer > User management > Users` and click on the users names for whom you see a `Status` that is not `Active` and change that so they will be allowed into the site when they log in.
+
+### - Asterisk, FreePBX, Trixbox ###
+Use the distributions packages or [see this blog link.](http://colt45.chemlab.org/?p=55)
+
+### - The AudioSpread files ###
+We haven't released anything for now.
